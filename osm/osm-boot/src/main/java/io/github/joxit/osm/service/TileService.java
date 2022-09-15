@@ -25,6 +25,9 @@ public class TileService {
   }
 
   /**
+   * Attention, il ne faut pas utiliser des fonctions utilisant un fichier de votre file system comme File ou FileInputStream.
+   * Vous devez utiliser le classpath du projet à la place Cf Resources de Spring.
+   *
    * @return le contenu du fichier prefectures.geojson
    */
   public String getPrefectures() throws IOException {

@@ -91,7 +91,6 @@ services:
         max-file: "10"
 
   osm-boot:
-    build: ./osm/osm-boot
     image: joxit/ig-master2:osm-boot
     environment:
       SERVER_PORT: 8080
