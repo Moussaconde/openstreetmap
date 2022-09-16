@@ -9,11 +9,11 @@ Prérequis pour le TP dans l'ordre:
 
 ## Cours 1: Introduction à Spring et Hibernate
 
-Le support du cours se trouve [ici](https://joxit.dev/IG-Master2/pizzeria/).
+Le support du cours se trouve [ici en pdf](https://joxit.dev/IG-Master2/beamer/spring-hibernate.pdf).
 
 ## Cours 2: La cartographie avec OpenStreetMap
 
-Le support du cours se trouve [ici](https://joxit.dev/IG-Master2/osm/).
+Le support du cours se trouve [ici en pdf](https://joxit.dev/IG-Master2/beamer/openstreetmap.pdf) avec le sujet de [tp ici](https://joxit.dev/IG-Master2/osm/).
 
 ## FAQ
 
