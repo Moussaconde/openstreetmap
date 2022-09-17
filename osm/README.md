@@ -13,7 +13,29 @@ Vous pouvez utiliser d'autres IDE, mais je ne pourrais pas vous aider... (Non, A
 
 ### Récuperer le code
 
-Vous pouvez cloner le projet avec git `git clone https://github.com/Joxit/IG-Master2` ou télécherger le [zip](https://github.com/Joxit/IG-Master2/archive/master.zip).
+Le rendu sera sous forme de lien sur le gitlab de la fac. Je **veux l'historique git complet** pour vous corriger facilement (vous aurez droit à des malus si ce n'est pas le cas), pour cela je vous conseille de suivre les instructions suivantes.
+
+Allez sur le gitlab de l'USPN, cliquez sur `New Project` 
+
+![10-gitlab-import-project](./images/10-gitlab-import-project.png)
+![11-gitlab-import-project](./images/11-gitlab-import-project.png)
+
+Ensuite importer depuis une url qui sera `https://github.com/Joxit/IG-Master2` (c'est ce qui permet d'avoir tout l'historique). Remplissez les champs comme ci dessous. Il doit bien être dans votre espace avec votre nom/numéro étudiant.
+
+![12-gitlab-create-project](./images/12-gitlab-create-project.png)
+![13-gitlab-create-project](./images/13-gitlab-create-project.png)
+
+Vous pourrez ensuite clone votre projet avec la manière que vous voulez (avec ou sans clé SSH... Via IntelliJ ou ligne de commande...)
+
+![14-gitlab-clone-project](./images/14-gitlab-clone-project.png)
+
+Pour finir vous devez m'ajouter en tant que developpeur pour que je puisse commenter vos commits et voir votre code.
+
+![15-gitlab-add-member](./images/15-gitlab-add-member.png)
+![16-gitlab-add-member](./images/16-gitlab-add-member.png)
+
+### Configurer IntelliJ
+
 Si vous vous vous êtes déjà servis de IntelliJ, cliquez sur `File` -> `New` -> `Project From Existing Sources`.
 
 ![00-project-from-sources](./images/00-project-from-sources.png)
