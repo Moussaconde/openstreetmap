@@ -59,7 +59,7 @@ public class HttpServerVerticle extends AbstractVerticle {
 
     BodyHandler bodyHandler = BodyHandler.create().setBodyLimit(1024 * 1024);
     router.route().handler(bodyHandler);
-    router.get("/api")
+    router.get("/pizzas")
         .produces("application/json")
         .handler(this::handle)
         .failureHandler(ctx -> {

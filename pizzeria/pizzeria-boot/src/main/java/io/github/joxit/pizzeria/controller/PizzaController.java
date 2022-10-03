@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @CrossOrigin
-@RequestMapping({"/api", "/api/"})
+@RequestMapping("/pizzas")
 public class PizzaController {
   private static Logger LOGGER = LoggerFactory.getLogger(PizzaController.class);
   @Autowired
