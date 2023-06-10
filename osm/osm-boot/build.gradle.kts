@@ -4,8 +4,12 @@ plugins {
 }
 
 tasks.bootJar {
-  archiveName = "osm-boot.jar"
+  archiveFileName.set("osm-boot.jar")
   manifest.attributes["Implementation-Version"] = project.version
+}
+
+tasks.named<Jar>("jar") {
+  enabled = false
 }
 
 dependencies {
