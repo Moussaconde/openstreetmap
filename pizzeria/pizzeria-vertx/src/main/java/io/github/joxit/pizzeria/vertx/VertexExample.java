@@ -75,7 +75,7 @@ public class VertexExample {
     factory.setJpaVendorAdapter(vendorAdapter);
     factory.setPackagesToScan("io.github.joxit.pizzeria.model");
     Properties jpaProperties = new Properties();
-    jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+    jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
     factory.setJpaProperties(jpaProperties);
     return factory;
   }

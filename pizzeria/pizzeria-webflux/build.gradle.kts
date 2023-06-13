@@ -4,7 +4,7 @@ plugins {
 }
 
 tasks.bootJar {
-  archiveName = "pizzeria-webflux.jar"
+  archiveFileName.set("pizzeria-webflux.jar")
   manifest.attributes["Implementation-Version"] = project.version
 }
 

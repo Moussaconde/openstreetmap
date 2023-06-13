@@ -8,11 +8,11 @@ dependencies {
 
   api("com.jolbox:bonecp:${property("version.bonecp")}")
   api("xml-apis:xml-apis:${property("version.xml-apis")}")
-  api("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${property("version.hibernate-jpa")}")
+  api("jakarta.persistence:jakarta.persistence-api:${property("version.jakarta")}")
   api("org.slf4j:jcl-over-slf4j:${property("version.slf4j")}")
   api("ch.qos.logback:logback-classic:${property("version.logback")}")
   api("mysql:mysql-connector-java:${property("version.mysql")}")
-  api("org.hibernate:hibernate-entitymanager:${property("version.hibernate")}")
+  api("org.hibernate.orm:hibernate-core:${property("version.hibernate")}")
   api("javax.xml.bind:jaxb-api:${property("version.jaxb")}")
 }
 

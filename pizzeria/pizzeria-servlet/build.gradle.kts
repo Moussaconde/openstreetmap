@@ -14,9 +14,9 @@ dependencies {
   implementation("org.springframework:spring-webmvc")
   implementation("org.springframework:spring-webflux")
 
-  implementation("javax:javaee-api:${property("version.javaee")}")
+  implementation("jakarta.ws.rs:jakarta.ws.rs-api:${property("version.jakarta")}")
   implementation("jstl:jstl:${property("version.jstl")}")
   implementation("com.fasterxml.jackson.core:jackson-databind:${property("version.jackson")}")
-  compileOnly("javax.servlet:javax.servlet-api:${property("version.servlet")}")
+  compileOnly("jakarta.servlet:jakarta.servlet-api:${property("version.servlet")}")
   compileOnly("org.apache.tomcat.embed:tomcat-embed-core:${property("version.tomcat")}")
 }
