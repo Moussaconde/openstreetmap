@@ -2,7 +2,7 @@
 
 Prérequis pour le TP dans l'ordre:
 
-- [Java JDK 11 ou +](https://adoptium.net/), n'oubliez pas de configurer votre JAVA_HOME.
+- [Java JDK 17 ou +](https://adoptium.net/), n'oubliez pas de configurer votre JAVA_HOME.
 - [IntelliJ Idea Community ou Ultimate](https://www.jetbrains.com/idea/download/), vous pouvez prendre un autre IDE mais je ne pourrais pas vous aider à le configurer.
 - **Lire la [FAQ](#faq) et le [sujet](https://joxit.dev/IG-Master2/osm/), il y a les instructions pour importer correctement votre projet et le lancer une première fois.**
 - Importer le projet contenu dans le dossier OSM et le lancer une première fois. Cette étape est importante car elle prend du temps !
@@ -20,7 +20,7 @@ Le support du cours se trouve [ici en pdf](https://joxit.dev/IG-Master2/beamer/o
 - Comment installer Java 11 ?
   - En function de votre OS, vous pouvez l'avoir via les repository (`sudo apt get install openjdk-11-jdk` sous Debian/Ubuntu) ou en téléchargeant sur openjdk.java.net. En général les SDK java sont rangés ici : `/usr/lib/jvm/`.
 - Comment configurer mon JAVA_HOME ?
-  - Pour qu'il soit disponible dans notre shell, vous devez ajouter cette ligne dans votre fichier `$HOME/.profile`: `export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/` (modifiez bien le chemin pour mettre le votre). Fermez votre session puis reconnectez vous pour que ça prenne effet. Vérifiez avec `echo $JAVA_HOME`
+  - Pour qu'il soit disponible dans notre shell, vous devez ajouter cette ligne dans votre fichier `$HOME/.profile`: `export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64/` (modifiez bien le chemin pour mettre le votre). Fermez votre session puis reconnectez vous pour que ça prenne effet. Vérifiez avec `echo $JAVA_HOME`
 - Quand je lance docker-compose j'ai une erreur qui contient `('Connection aborted.', PermissionError(13, 'Permission denied'))`
   - Docker requier des droits administrateur pour s'executer ou sinon appartenir au groupe Docker. Pour cela lancez la commande `sudo usermod -aG docker $(whoami)`. Quand vous lancez la commande `groups` vous devriez voir `docker` dans la liste.
 - J'ai lancé mon application et j'ai comme erreur `BindException: Adresse déjà utilisée`.

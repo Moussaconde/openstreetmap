@@ -47,7 +47,7 @@ Sinon, sur la page de `Welcome to IntelliJ IDEA`, cliquez sur `Open`
 Dans les deux cas, cela ouvre une fenêtre, naviguez jusqu'au projet et **selectionnez le fichier** `osm/build.gradle.kts` et ouvrez en tant que projet.
 Cela ouvre une fenêtre avec le projet configuré avec Gradle.
 
-Si vous n'avez pas Java de configuré, vous pouvez séléctionner le SDK à utiliser, pour cela cliquez sur `File` -> `Project Structure` -> `Project`. Vous verrez peut-être que vous verrez `<No SDK>`, cliquez dessus et selectionnez une version de Java (s'il y en a), sinon deux choix s'offrent à vous:
+Si vous n'avez pas Java de configuré, vous pouvez séléctionner le SDK à utiliser, pour cela cliquez sur `File` -> `Project Structure` -> `Project`. Vous verrez peut-être que vous verrez `<No SDK>`, cliquez dessus et selectionnez une version de Java (s'il y en a une supérieure à 17), sinon deux choix s'offrent à vous:
 
 1. Vous avez déjà un SDK sur votre machine alors faites : `Add SDK` -> `JDK`. Cela ouvre une fenêtre, naviguez jusuq'à l'endroit où il y a votre JDK (essayez `/usr/lib/jvm/` pour linux ou dans les dossiers `Program Files/Eclipse Foundation` sous Windows).
 2. Vous n'avez pas de SDK sur votre machine, alors faites : `Download JDK` -> `Eclipse Temurin` -> La dernière version disponible.
