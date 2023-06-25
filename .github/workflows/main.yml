@@ -15,7 +15,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     - name: Install pizzeria
-      run: cd pizzeria && gradle build
+      run: ./sloth pizzeria build
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx

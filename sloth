@@ -31,6 +31,11 @@ if [ "$1" = "pizzeria" ]; then
       docker-compose build ${1}-${2}
       docker-compose up ${1}-${2}
       ;;
+    build)
+      cd pizzeria
+      ./gradlew clean pizzeria-core:build pizzeria-servlet:build pizzeria-webflux:build pizzeria-boot:build pizzeria-vertx:shadowJar
+      cd -
+      ;;
     all)
       cd pizzeria
       ./gradlew clean pizzeria-core:build pizzeria-servlet:build pizzeria-webflux:build pizzeria-boot:build pizzeria-vertx:shadowJar
