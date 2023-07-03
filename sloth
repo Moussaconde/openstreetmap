@@ -1,11 +1,17 @@
 #!/bin/bash
 set -e
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64/
+# environment for GitHub CI
+if [ -n "$JAVA_HOME_17_x64" ]; then
+  export JAVA_HOME="$JAVA_HOME_17_x64"
+else
+  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64/
+fi
+
 DIR=$(pwd)
 
 function run_for_java {
   cd $1
-  ./gradlew clean :${1}-core:build :${1}-${2}:build
+  ./gradlew --no-daemon clean :${1}-core:build :${1}-${2}:build
   cd $DIR
   docker-compose build ${1}-${2}
   docker-compose up ${1}-${2}
@@ -13,7 +19,7 @@ function run_for_java {
 
 function run_for_vertx {
   cd $1
-  ./gradlew clean :${1}-core:build :${1}-${2}:shadowJar
+  ./gradlew --no-daemon clean :${1}-core:build :${1}-${2}:shadowJar
   cd $DIR
   docker-compose build ${1}-${2}
   docker-compose up ${1}-${2}
@@ -33,12 +39,12 @@ if [ "$1" = "pizzeria" ]; then
       ;;
     build)
       cd pizzeria
-      ./gradlew clean pizzeria-core:build pizzeria-servlet:build pizzeria-webflux:build pizzeria-boot:build pizzeria-vertx:shadowJar
+      ./gradlew --no-daemon clean pizzeria-core:build pizzeria-servlet:build pizzeria-webflux:build pizzeria-boot:build pizzeria-vertx:shadowJar
       cd -
       ;;
     all)
       cd pizzeria
-      ./gradlew clean pizzeria-core:build pizzeria-servlet:build pizzeria-webflux:build pizzeria-boot:build pizzeria-vertx:shadowJar
+      ./gradlew --no-daemon clean pizzeria-core:build pizzeria-servlet:build pizzeria-webflux:build pizzeria-boot:build pizzeria-vertx:shadowJar
       cd $DIR
       docker-compose build pizzeria-servlet pizzeria-webflux pizzeria-boot pizzeria-vertx
       docker-compose up -d pizzeria-servlet pizzeria-webflux pizzeria-boot pizzeria-vertx nginx pizzeria-ui
