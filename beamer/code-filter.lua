@@ -9,7 +9,7 @@ function CodeBlock (cb)
 end
 
 function Meta (m)
-  m['header-includes'] = {
+  m['header-includes'] = m['header-includes'].. {
     raw_tex ('\\usepackage{tcolorbox}'..
       '\\tcbset{colback=blueGrey!100!blueJawg,size=small}'..
       '\\tcbsetforeverylayer{colframe=blueJawg!100!black}')
