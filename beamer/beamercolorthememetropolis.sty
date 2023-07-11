@@ -38,42 +38,46 @@
   }
 }
 \definecolor{mDarkBrown}{HTML}{604c38}
-\definecolor{mDarkTeal}{HTML}{23373b}
-\definecolor{mLightBrown}{HTML}{EB811B}
-\definecolor{mLightGreen}{HTML}{14B03D}
-\definecolor{blueJawg}{HTML}{0094FF}
+\definecolor{jawgDark}{HTML}{044e7a}
+\definecolor{jawgMaps}{HTML}{0094FF}
+\definecolor{jawgGeocoding}{HTML}{AC3BF6}
+\definecolor{jawgRouting}{HTML}{6F6FFF}
+\definecolor{jawgElevation}{HTML}{00C8B5}
+\definecolor{jawgBusinessLocator}{HTML}{ffc444}
+\definecolor{textColor}{HTML}{02304A}
 \definecolor{blueGrey}{HTML}{ECEFF1}
 \newcommand{\metropolis@colors@dark}{
   \setbeamercolor{normal text}{%
     fg=black!2,
-    bg=mDarkTeal
+    bg=textColor
   }
   \usebeamercolor[fg]{normal text}
 }
 \newcommand{\metropolis@colors@light}{
   \setbeamercolor{normal text}{%
-    fg=mDarkTeal,
+    fg=textColor,
     bg=black!2
   }
 }
 \setbeamercolor{jawg text}{%
-  fg=blueJawg
+  fg=jawgMaps
 }
 \setbeamercolor{alerted text}{%
-  fg=mLightBrown
+  fg=jawgGeocoding
 }
 \setbeamercolor{example text}{%
-  fg=mLightGreen
+  fg=jawgElevation
 }
 \setbeamercolor{titlelike}{use=normal text, parent=normal text}
+\setbeamercolor{title}{use=normal text, parent=normal text, fg=jawgMaps}
 \setbeamercolor{author}{use=normal text, parent=normal text}
 \setbeamercolor{date}{use=normal text, parent=normal text}
 \setbeamercolor{institute}{use=normal text, parent=normal text}
 \setbeamercolor{structure}{use=normal text, fg=normal text.fg}
 \setbeamercolor{palette primary}{%
   use=normal text,
-  fg=normal text.bg,
-  bg=normal text.fg
+  bg=jawgDark,
+  fg=black!2
 }
 \setbeamercolor{frametitle}{%
   use=palette primary,
@@ -81,8 +85,8 @@
 }
 \setbeamercolor{progress bar}{%
   use=alerted text,
-  fg=alerted text.fg,
-  bg=alerted text.fg!50!black!30
+  fg=jawgRouting,
+  bg=jawgRouting!50!black!30
 }
 \setbeamercolor{title separator}{
   use=progress bar,
@@ -129,6 +133,8 @@
 }
 \setbeamercolor{block body alerted}{use=block body, parent=block body}
 \setbeamercolor{block body example}{use=block body, parent=block body}
+\AtBeginEnvironment{block}{\setbeamercolor{itemize item}{fg=jawgMaps}}
+\AtBeginEnvironment{block}{\setbeamercolor{itemize subitem}{fg=jawgMaps}}
 \setbeamercolor{footnote}{fg=normal text.fg!90}
 \setbeamercolor{footnote mark}{fg=.}
 \setbeamercolor{bibliography entry author}{fg=, bg=}

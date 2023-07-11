@@ -11,8 +11,8 @@ end
 function Meta (m)
   m['header-includes'] = m['header-includes'].. {
     raw_tex ('\\usepackage{tcolorbox}'..
-      '\\tcbset{colback=blueGrey!100!blueJawg,size=small}'..
-      '\\tcbsetforeverylayer{colframe=blueJawg!100!black}')
+      '\\tcbset{colback=blueGrey!100!jawgMaps,size=small}'..
+      '\\tcbsetforeverylayer{colframe=jawgMaps!100!black}')
   }
   return m
 end

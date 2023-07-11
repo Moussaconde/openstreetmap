@@ -13,8 +13,6 @@ header-includes: |
   \metroset{block=fill}
   \newcommand{\sectionimage}{Foo}
   \newcommand{\imagedirectory}{spring-hibernate-images}
-  \AtBeginEnvironment{block}{\setbeamercolor{itemize item}{fg=blueJawg}}
-  \AtBeginEnvironment{block}{\setbeamercolor{itemize subitem}{fg=blueJawg}}
   \usepackage{dirtytalk}
 build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A takima.tex -o spring-hibernate.pdf
 ---
