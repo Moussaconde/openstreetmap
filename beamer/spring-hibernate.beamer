@@ -31,7 +31,7 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Qu'est-ce que JEE ?
 
-- Version actuelle Jakarta EE 9
+- Version actuelle Jakarta EE 10
 - Ensemble de Java Specification Requests ou JSR
   - JTA (Java Transaction API)
   - JDBC (Java DataBase Connection)
@@ -197,7 +197,7 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 - Utilisation du multi-module
 - Lancement des tests
 - Plugins en tout genre
-- Sans installation grâce au wrapper (Bientôt dans Maven 3.7)
+- Sans installation grâce au wrapper (également disponible dans Maven 3.7+)
 - Moins verbeux que Maven (Groovy/Kotlin vs XML)
 
 ## Gradle{.standout}
