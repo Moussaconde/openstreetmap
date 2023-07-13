@@ -1,0 +1,143 @@
+---
+title: Introduction à Kotlin
+subtitle: Institut Galilée - Master 2 PLS
+author: Jones Magloire
+date: 22 Septembre 2023
+theme: metropolis
+toc: true
+section-titles: false
+filter: code-filter.lua
+header-includes: |
+  \newcommand{\hideFromPandoc}[1]{#1}
+  \usepackage{fourier}
+  \hideFromPandoc{ \let\Begin\begin \let\End\end }
+  \metroset{block=fill}
+  \newcommand{\sectionimage}{Foo}
+  \newcommand{\imagedirectory}{kotlin-images}
+  \AtBeginEnvironment{block}{\setbeamercolor{itemize item}{fg=jawgMaps}}
+  \AtBeginEnvironment{block}{\setbeamercolor{itemize subitem}{fg=jawgMaps}}
+  \usepackage{dirtytalk}
+  \usepackage{tcolorbox}
+  \tcbset{colback=blueGrey!100!jawgMaps,size=small}
+  \tcbsetforeverylayer{colframe=jawgMaps!100!black}
+build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex -o kotlin.pdf
+---
+
+# Kotlin
+
+---
+
+## Kotlin
+
+### Avantages de Kotlin {.exampleblock}
+
+- Peut être compilé en bytecode pour JVM
+- Est interopérable avec Java et Scala
+  - Fonctionne dans les projets Java
+  - Peut utiliser des libraries Java
+  - Peut être exporté en librairie pour des projets Java
+- Est sûr (pas de `null`) et moins verbeux
+
+# Écrire du Kotlin
+
+---
+
+## Exemple fonction main Java
+
+```java
+class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, World!"); 
+  }
+}
+```
+
+---
+
+## Exemple fonction main Kotlin
+
+```kotlin
+fun main(args: Array<String>) {
+  println("Hello, world!")
+}
+```
+
+```kotlin
+fun main() {
+  println("Hello, world!")
+}
+```
+
+```kotlin
+fun main() = println("Hello, world!")
+```
+
+---
+
+## Kotlin VS Java
+
+### Les différences {.exampleblock}
+- Tout comme Java, la fonction `main` est le point d'entrée du programme
+- Elle prend en argument une liste de `String` qui peut être omis
+- `println` affiche à l'écran ce qu'il prend en paramètre avec un saut de ligne
+- Pas besoin de mettre le package `System.out` pour effectuer un print sur l'écran
+
+---
+
+
+## Exemple variables Java
+
+```java
+// Affectation immédiate
+int a = 1;
+```
+
+```java
+// Ajouté depuis java 10 (2018)
+// Le type `int` est déduit par la valeure
+var b = 2;
+// Et on peut reassigner une variable `var`
+b = a;
+```
+
+```java
+// On peut déclarer une variable et l'affecter après
+int c;
+c = 3;
+```
+
+## Exemple variables Kotlin
+
+```kotlin
+// Affectation immédiate
+val a: Int = 1
+a = 4 // Erreur: Une valeur ne peut être modifiée
+```
+
+```kotlin
+// Le type `Int` est déduit par la valeure
+var b = 2
+// Et on peut reassigner une variable `var`
+b = a
+```
+
+```kotlin
+// Le type est requis quand il n'y a pas
+// de valeure d'initialisation
+val c: Int
+// Première initialisation
+c = 3
+```
+
+## Variables Kotlin
+
+### Les différences {.exampleblock}
+- En Kotlin nous avons la notion d'immutabilité grâce aux `val`
+- Les primitives Java ont une majuscule en kotlin (`int` devient `Int`)
+- Le type de la variable se met après le nom de celle-ci
+- Le type de la variable peut être déduite dans la plupart des cas
+
+
+## Conclusion {.standout}
+
+\centering\Huge Question ?
