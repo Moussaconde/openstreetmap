@@ -38,6 +38,17 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
   - Peut être exporté en librairie pour des projets Java
 - Est sûr (pas de `null`) et moins verbeux
 
+# Les concepts Kotlin
+
+## Les concepts Kotlin
+
+- Programmation Orienté Objet (POO)
+- Programmation Fonctionnel (Lambda, fonction anonyme...)
+- Typage dynamique
+- Immutabilité
+- Interopérabilité avec Java
+- Null safe
+
 # Écrire du Kotlin
 
 ---
@@ -129,7 +140,7 @@ val c: Int
 c = 3
 ```
 
-## Variables Kotlin
+## Kotlin vs Java
 
 ### Les différences {.exampleblock}
 - En Kotlin nous avons la notion d'immutabilité grâce aux `val`
@@ -137,6 +148,41 @@ c = 3
 - Le type de la variable se met après le nom de celle-ci
 - Le type de la variable peut être déduite dans la plupart des cas
 
+## Example functions Java
+
+```java
+public int sum(int a, int b) {
+  return a + b;
+}
+```
+
+```java
+int mul(int a, int b) {
+  return a * b;
+}
+```
+
+## Example functions Kotlin
+
+```kotlin
+// Le mot clé est `fun` et le type se met à la fin
+fun sum(a: Int, b: Int): Int {
+  return a + b
+}
+```
+
+```kotlin
+// Le type de retour peut être déduit
+internal fun mul(a: Int, b: Int) = a * b
+```
+
+## Kotlin vs Java
+
+### Les différences {.exampleblock}
+- Par défaut tout est `public` en Kotlin
+- Pour les functions simples, on peut mettre un `=` avec le retour directement
+- Le type se met toujours après les déclarations
+- `public` (par défault); `internal` (=> rien en Java); `protected`; `private`
 
 ## Conclusion {.standout}
 
