@@ -104,7 +104,7 @@ int a = 1;
 ```
 
 ```java
-// Ajouté depuis java 10 (Mars 2018)
+// Ajouté depuis Java 10 (Mars 2018)
 // Le type `int` est déduit par la valeure
 var b = 2;
 // Et on peut reassigner une variable `var`
@@ -275,11 +275,129 @@ fun switchCase(x: Int): Int =
   }
 ```
 
+## Example expressions `when` Kotlin
+
+```kotlin
+fun switchCase(x: Int) =
+  when {
+    x <= 2 -> -1
+    x == 3 -> 0
+    else -> x * 2
+  }
+```
 ## Kotlin vs Java
 
 ### Les différences {.exampleblock}
 - Le mot clé pour les expression est différente entre Java et Kotlin, nous avons le `switch` et `when`
 - Depuis Java 12 les expressions sont plus semblable à Kotlin
+- Dans les deux cas on peut combiner plusieurs options qui retournen la même instruction 
+- Possibilité de mettre des conditions plus complexes dans les options en Kotlin
+
+## Example boucles `for` Java
+
+```java
+List<String> list = Arrays.asList("a", "b", "c", "d");
+for (int i = 0; i < list.size(); i++) {
+  System.out.println(list.get(i));
+}
+```
+
+```java
+var list = Arrays.asList("a", "b", "c", "d");
+for (String elt : list) {
+  System.out.println(elt);
+}
+```
+
+## Example boucles `for` Kotlin
+
+```kotlin
+val list = listOf("a", "b", "c", "d")
+for (i in 0..list.size - 1) {
+  println(list[i])
+}
+```
+
+```kotlin
+val list = listOf("a", "b", "c", "d")
+for (elt in list) {
+  println(elt)
+}
+```
+```kotlin
+val list = listOf("a", "b", "c", "d")
+for (i in list.size - 1 downTo 0 step 2) {
+  println(list[i])
+}
+```
+
+## Example boucles `while` et `do/while` Java/Kotlin
+
+```java
+var n = 0;
+while (n < 0) {
+  System.out.println(n);
+  n++;
+}
+```
+
+```java
+var n = 0;
+do {
+  System.out.println(n);
+  n++;
+} while (n < 0);
+```
+
+## Kotlin vs Java
+
+### Les différences {.exampleblock}
+- Création de liste plus simple en Kotlin
+- Il existe ce qu'on appelle les Ranges dans Kotlin, cela permet à la fois de créer des listes de nombres mais également de gérer les conditions d'arrêt des boucles `for`
+- Dans les deux cas il y a la boucle amélioré pour itérer sur les éléments directement à l'aide de `:` en Java et `in` en Kotlin
+- Pour le `while` et `do`/`while` c'est exactement la même chose
+
+## Example boucles `forEach` et `map` Java
+
+```java
+// Depuis Java 8 (Mars 2014)
+var list = Arrays.asList("a", "b", "c", "d")
+  .stream()
+  .map(elt -> elt + "_" + elt)
+  .collect(Collectors.toList());
+list.forEach(elt -> System.out.println(elt));
+// Equivalent à
+list.forEach(System.out::println);
+```
+
+```java
+// Depuis Java 16 (Mars 2021)
+var list = Arrays.asList("a", "b", "c", "d")
+  .stream()
+  .map(elt -> elt + "_" + elt)
+  .toList();
+```
+
+## Example boucles `forEach` et `map` Kotlin
+
+```kotlin
+val list = listOf("a", "b", "c", "d")
+  .map { elt -> elt + "_" + elt }
+list.forEach { elt -> println(elt) }
+// Equivalent à (où `it` fait référence à
+// l'élément de la lambda)
+list.forEach { println(it) }
+// Equivalent à
+list.forEach(::println)
+```
+
+## Kotlin vs Java
+
+### Les différences {.exampleblock}
+- En Java nous devons passer par des streams traiter des listes d'éléments avec des lambdas 
+- Java essaie de rattraper son retard avec l'ajout de `toList()` en 2021
+- L'utilisation de la Stream API est très verbeuse en Java
+- Dans les deux cas, tout est immutable, vos listes initiales resteront inchangées
 
 ## Conclusion {.standout}
 
