@@ -104,7 +104,7 @@ int a = 1;
 ```
 
 ```java
-// Ajouté depuis java 10 (2018)
+// Ajouté depuis java 10 (Mars 2018)
 // Le type `int` est déduit par la valeure
 var b = 2;
 // Et on peut reassigner une variable `var`
@@ -183,6 +183,103 @@ internal fun mul(a: Int, b: Int) = a * b
 - Pour les functions simples, on peut mettre un `=` avec le retour directement
 - Le type se met toujours après les déclarations
 - `public` (par défault); `internal` (=> rien en Java); `protected`; `private`
+
+## Example conditions if Java
+
+```java
+int maxOf(int a, int b) {
+  if (a > b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+```
+
+```java
+int maxOf(int a, int b) {
+  // Opérateur ternaire
+  return a > b ? a : b;
+}
+```
+
+## Example conditions Kotlin
+
+```kotlin
+fun maxOf(a: Int, b: Int): Int {
+  if (a > b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+```
+
+```kotlin
+fun maxOf(a: Int, b: Int): Int {
+  return if (a > b) a else b
+}
+// Équivalent à l'opérateur ternaire
+fun maxOf(a: Int, b: Int) = if (a > b) a else b
+```
+
+## Kotlin vs Java
+
+### Les différences {.exampleblock}
+- Le return peut être mis dans le `if` comme en Java ou avant le `if`
+- L'opérateur ternaire n'existe pas en Kotlin, c'est un if normal
+
+## Example expressions `switch` Java
+
+```java
+// Ancien style switch/case
+int switchCase(int x) {
+  switch (x) {
+    case 1:
+    case 3:
+      return -1;
+    default: return x * 2;
+  }
+}
+```
+
+## Example expressions `switch` Java
+
+```java
+// Les expression switch/case
+// Ajouté depuis Java 12 (Mars 2019)
+int switchCase(int x) {
+  return switch (x) {
+    case 1, 2 -> -1;
+    default -> x * 2;
+  };
+}
+```
+
+## Example expressions `when` Kotlin
+
+```kotlin
+fun switchCase(x: Int): Int {
+  when (x) {
+    1, 2 -> return -1
+    else -> return x * 2
+  }
+}
+```
+
+```kotlin
+fun switchCase(x: Int): Int = 
+  when (x) {
+    1, 2 -> -1
+    else -> x * 2
+  }
+```
+
+## Kotlin vs Java
+
+### Les différences {.exampleblock}
+- Le mot clé pour les expression est différente entre Java et Kotlin, nous avons le `switch` et `when`
+- Depuis Java 12 les expressions sont plus semblable à Kotlin
 
 ## Conclusion {.standout}
 
