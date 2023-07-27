@@ -399,6 +399,75 @@ list.forEach(::println)
 - L'utilisation de la Stream API est très verbeuse en Java
 - Dans les deux cas, tout est immutable, vos listes initiales resteront inchangées
 
+# Les exclusivités de Kotlin
+
+## Null safety : Safe Calls
+
+```kotlin
+val notNullString: String = "Jamais null"
+val nullableString: String? = "Peut être null"
+val nullString: String? = null
+
+println(notNullString.lowercase())
+// -> "jamais null"
+// println(nullableString.lowercase())
+// -> ne compile pas
+println(nullableString?.lowercase())
+// -> "peut être null"
+println(nullString?.lowercase())
+// -> null
+```
+
+## Null safety : Elvis Operator `?:`
+
+```kotlin
+val nullableString: String? = "Peut être null"
+val nullString: String? = null
+
+println(nullableString ?: "C'était null")
+// -> "Peut être null"
+println(nullString ?: "C'était null")
+// -> "C'était null"
+```
+
+## Null safety : Unsafe Call
+
+```kotlin
+val nullableString: String? = "Peut être null"
+val nullString: String? = null
+
+println(nullableString!!)
+// -> "Peut être null"
+println(nullString!!)
+// -> throw une exception `NullPointerException`
+```
+
+## String et templates
+
+```kotlin
+val s = "Kotlin"
+val n = 2011
+
+println("Le language $s a été créé en $n")
+
+println("""En $s
+  on peut
+  écrire sur
+  plusieurs lignes
+  """.trimIndent())
+```
+
+## TODO / `NotImplementedError`
+
+```kotlin
+fun getOrNull(): Any? =
+  TODO("Not Implemented yet!")
+// -> throw une exception `NotImplementedError`
+
+fun getOrNull(): Any? = { }
+// Ne va pas compiler car le retourn ne match pas
+```
+
 ## Conclusion {.standout}
 
 \centering\Huge Question ?
