@@ -399,6 +399,74 @@ list.forEach(::println)
 - L'utilisation de la Stream API est très verbeuse en Java
 - Dans les deux cas, tout est immutable, vos listes initiales resteront inchangées
 
+## Example POJO avant `record` Java
+
+```java
+public class Human {
+  private String name;
+  private String surname;
+  public Human(String name, String surname) {
+    this.name = name;
+    this.surname = surname;
+  }
+  public Human(String name) { this.name = name; }
+  public String getName() { return name; }
+  public String getSurname() { return surname; }
+  public String toString() { /* ... */ }
+  public int hashcode() { /* ... */ }
+  public boolean equals(Object o) { /* ... */ }
+}
+```
+
+## Example POJO `record` Java
+
+```java
+// Depuis Java 14 (Mars 2020)
+public record Human(String name, String surname) {
+  // Second constructeur
+  public Human(String name) {
+    this(name, null);
+  }
+}
+```
+
+```java
+// Création des objets
+var man = new Human("John", "Doe");
+var woman = new Human("Jane");
+System.out.println(man + " / " + man.name());
+// Human[name=John, surname=Doe] / John
+System.out.println(woman);
+// Human[name=Jane, surname=null]
+```
+
+## Example POJO `data class` Kotlin
+
+```kotlin
+data class Human(
+  val name: String,
+  val surname: String
+) {
+  constructor(name: String) : this(name, "")
+}
+```
+
+```kotlin
+val man = Human("John", "Doe")
+val woman = Human("Jane")
+println("$man / ${man.name}")
+// Human(name=John, surname=Doe) / John
+println(woman)
+// Human(name=Jane, surname=)
+```
+
+## Kotlin vs Java
+
+### Les différences {.exampleblock}
+- Les POJO (Plain Old Java Object) sont des objets simples, sans règle métiers. Nous les utilisons pour décrire des tables (on les appelle également Java Bean) ou pour du transfert de donnée (également appelé DTO: Data Transfert Object).
+- Java essaie de rattraper son retard avec l'ajout des records en 2020
+- Java necessite toujours l'utilisation d'accolades lors de la déclaration de `record`
+
 # Les exclusivités de Kotlin
 
 ## Null safety : Safe Calls
@@ -465,7 +533,7 @@ fun getOrNull(): Any? =
 // -> throw une exception `NotImplementedError`
 
 fun getOrNull(): Any? = { }
-// Ne va pas compiler car le retourn ne match pas
+// Ne va pas compiler car le retour ne match pas
 ```
 
 ## Conclusion {.standout}
