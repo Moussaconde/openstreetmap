@@ -29,6 +29,18 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
 
 ## Kotlin
 
+### Histoire de Kotlin
+
+- Créé par JetBrains (aussi connu pour l'IDE IntelliJ IDEA)
+- Le langage a été révélé en juillet 2011 (en même temps que Java 7)
+  - Premier commit en novembre 2010
+  - Première release 1.0 en février 2016 (sous Java 8)
+  - Langage Open Source sous license Apache 2
+- Support total dans Android en 2017
+- Devenu langage par défaut de Android en mai 2019
+
+## Kotlin
+
 ### Avantages de Kotlin {.exampleblock}
 
 - Peut être compilé en bytecode pour JVM
@@ -37,6 +49,22 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
   - Peut utiliser des libraries Java
   - Peut être exporté en librairie pour des projets Java
 - Est sûr (pas de `null`) et moins verbeux
+- Peut générer du bytecode pour Java 8+
+
+## Kotlin et Java
+
+### Kotlin et Java {.alertblock}
+
+- Java a débuté en 1995
+- Les débuts de Kotlin ont été fait sous Java 7
+  - Sortie de Java 7 en juillet 2011
+  - Annonce de Kotlin en juillet 2011
+- La première release de Kotlin a été faite sous Java 8
+  - Sortie de Java 8 mars 2014
+  - Sortie de Kotlin 1.0 février 2016
+- Utilisation dans Android
+  - Android compatible avec des versions précises de Java
+  - Kotlin se détache des versions Java
 
 # Les concepts Kotlin
 
