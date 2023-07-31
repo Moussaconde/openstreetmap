@@ -32,34 +32,37 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
 ### Histoire de Kotlin
 
 - Créé par JetBrains (aussi connu pour l'IDE IntelliJ IDEA)
-- Le langage a été révélé en juillet 2011 (en même temps que Java 7)
+- Annoncé en juillet 2011 (en même temps que Java 7)
   - Premier commit en novembre 2010
-  - Première release 1.0 en février 2016 (sous Java 8)
-  - Langage Open Source sous license Apache 2
+  - Release 1.0 en février 2016 (sous Java 8)
+  - Open Source sous license Apache 2
 - Support total dans Android en 2017
 - Devenu langage par défaut de Android en mai 2019
 
 ## Kotlin
 
-### Avantages de Kotlin {.exampleblock}
+### Avantages de Kotlin {.example}
 
-- Peut être compilé en bytecode pour JVM
+- Peut être compilé en bytecode pour JVM (Java 8+)
 - Est interopérable avec Java et Scala
   - Fonctionne dans les projets Java
   - Peut utiliser des libraries Java
   - Peut être exporté en librairie pour des projets Java
 - Est sûr (pas de `null`) et moins verbeux
-- Peut générer du bytecode pour Java 8+
+- Multiplatforme, compilable en:
+  - Javascript
+  - Native Android/iOS/mac/Linux/Windows
+  - Web Assembly
 
 ## Kotlin et Java
 
-### Kotlin et Java {.alertblock}
+### Kotlin et Java {.alert}
 
 - Java a débuté en 1995
-- Les débuts de Kotlin ont été fait sous Java 7
+- Débuts de Kotlin sous Java 7
   - Sortie de Java 7 en juillet 2011
   - Annonce de Kotlin en juillet 2011
-- La première release de Kotlin a été faite sous Java 8
+- Première release de Kotlin sous Java 8
   - Sortie de Java 8 mars 2014
   - Sortie de Kotlin 1.0 février 2016
 - Utilisation dans Android
@@ -70,6 +73,7 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
 
 ## Les concepts Kotlin
 
+### Principaux concepts
 - Programmation Orienté Objet (POO)
 - Programmation Fonctionnel (Lambda, fonction anonyme...)
 - Typage dynamique
@@ -81,19 +85,28 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
 
 ---
 
-## Exemple fonction main Java
+## Exemple fonction `main` Java
 
 ```java
 class HelloWorld {
+  // Doit obligatoirement être dans une classe
   public static void main(String[] args) {
     System.out.println("Hello, World!"); 
   }
 }
 ```
 
+```java
+// Preview de Java 21 (Septembre 2023)
+// Bientôt dans Java (ETA 2024)
+void main() {
+  System.out.println("Hello, World!");
+}
+```
+
 ---
 
-## Exemple fonction main Kotlin
+## Exemple fonction `main` Kotlin
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -115,14 +128,13 @@ fun main() = println("Hello, world!")
 
 ## Kotlin VS Java
 
-### Les différences {.exampleblock}
-- Tout comme Java, la fonction `main` est le point d'entrée du programme
+### Les différences {.alert}
+- La fonction `main` est toujours le point d'entrée du programme
 - Elle prend en argument une liste de `String` qui peut être omis
 - `println` affiche à l'écran ce qu'il prend en paramètre avec un saut de ligne
 - Pas besoin de mettre le package `System.out` pour effectuer un print sur l'écran
 
 ---
-
 
 ## Exemple variables Java
 
@@ -170,7 +182,7 @@ c = 3
 
 ## Kotlin vs Java
 
-### Les différences {.exampleblock}
+### Les différences {.alert}
 - En Kotlin nous avons la notion d'immutabilité grâce aux `val`
 - Les primitives Java ont une majuscule en kotlin (`int` devient `Int`)
 - Le type de la variable se met après le nom de celle-ci
@@ -206,7 +218,7 @@ internal fun mul(a: Int, b: Int) = a * b
 
 ## Kotlin vs Java
 
-### Les différences {.exampleblock}
+### Les différences {.alert}
 - Par défaut tout est `public` en Kotlin
 - Pour les functions simples, on peut mettre un `=` avec le retour directement
 - Le type se met toujours après les déclarations
@@ -253,9 +265,9 @@ fun maxOf(a: Int, b: Int) = if (a > b) a else b
 
 ## Kotlin vs Java
 
-### Les différences {.exampleblock}
-- Le return peut être mis dans le `if` comme en Java ou avant le `if`
-- L'opérateur ternaire n'existe pas en Kotlin, c'est un if normal
+### Les différences {.alert}
+- Le `return` peut être mis dans le `if` comme en Java ou avant le `if`
+- L'opérateur ternaire n'existe pas en Kotlin, c'est un `if` normal
 
 ## Example expressions `switch` Java
 
@@ -271,15 +283,32 @@ int switchCase(int x) {
 }
 ```
 
-## Example expressions `switch` Java
+## Example expressions `switch` Java 12
 
 ```java
 // Les expression switch/case
 // Ajouté depuis Java 12 (Mars 2019)
 int switchCase(int x) {
   return switch (x) {
-    case 1, 2 -> -1;
-    default -> x * 2;
+    case 1, 2 -> { yield -1; }
+    default   -> x * 2;
+  };
+}
+```
+
+## Example Pattern Matching `switch` Java 21
+
+```java
+// Pattern Matching dans le switch/case
+// Ajouté depuis Java 21 (Septembre 2023)
+String switchCase(Object obj) {
+  return switch (obj) {
+    case String s -> String.format("String %s", s);
+    case Integer i && i >= 0 // restrindre le pattern
+        -> String.format("positive int %d", i);
+    case Integer i && i < 0
+        -> String.format("negative int %d", i);
+    default -> obj.toString();
   };
 }
 ```
@@ -313,13 +342,26 @@ fun switchCase(x: Int) =
     else -> x * 2
   }
 ```
+
+## Example Pattern Matching `when` Kotlin
+
+```kotlin
+fun switchCase(o: Any): String =
+  when (o) {
+    is Int, is Float -> "Number ${o.toString()}"
+    is String -> "String ${o.lowercase()}"
+    else -> o.toString()
+  }
+```
 ## Kotlin vs Java
 
-### Les différences {.exampleblock}
+### Les différences {.alert}
 - Le mot clé pour les expression est différente entre Java et Kotlin, nous avons le `switch` et `when`
 - Depuis Java 12 les expressions sont plus semblable à Kotlin
 - Dans les deux cas on peut combiner plusieurs options qui retournen la même instruction 
 - Possibilité de mettre des conditions plus complexes dans les options en Kotlin
+- En Java on utilise `yield` dans les cas complexes, cela determine la valeure de retour du `switch`
+- Le pattern matching kotlin ne permet pas de restrindre après une selection de type
 
 ## Example boucles `for` Java
 
@@ -341,7 +383,7 @@ for (String elt : list) {
 
 ```kotlin
 val list = listOf("a", "b", "c", "d")
-for (i in 0..list.size - 1) {
+for (i in 0..list.size - 1) { // Range
   println(list[i])
 }
 ```
@@ -352,9 +394,10 @@ for (elt in list) {
   println(elt)
 }
 ```
+
 ```kotlin
 val list = listOf("a", "b", "c", "d")
-for (i in list.size - 1 downTo 0 step 2) {
+for (i in list.size - 1 downTo 0 step 2) { // Range
   println(list[i])
 }
 ```
@@ -379,11 +422,11 @@ do {
 
 ## Kotlin vs Java
 
-### Les différences {.exampleblock}
+### Les différences {.alert}
 - Création de liste plus simple en Kotlin
-- Il existe ce qu'on appelle les Ranges dans Kotlin, cela permet à la fois de créer des listes de nombres mais également de gérer les conditions d'arrêt des boucles `for`
+- Les `Range` dans Kotlin permet à la fois de créer des listes de nombres mais également de gérer les conditions d'arrêt des boucles `for`
 - Dans les deux cas il y a la boucle amélioré pour itérer sur les éléments directement à l'aide de `:` en Java et `in` en Kotlin
-- Pour le `while` et `do`/`while` c'est exactement la même chose
+- Code identique pour `while` et `do`/`while`
 
 ## Example boucles `forEach` et `map` Java
 
@@ -415,17 +458,22 @@ list.forEach { elt -> println(elt) }
 // Equivalent à (où `it` fait référence à
 // l'élément de la lambda)
 list.forEach { println(it) }
-// Equivalent à
+// Et à
 list.forEach(::println)
+// Présence de
+list.forEachIndexed {
+  elt, idx -> println("$elt $idx")
+}
 ```
 
 ## Kotlin vs Java
 
-### Les différences {.exampleblock}
-- En Java nous devons passer par des streams traiter des listes d'éléments avec des lambdas 
-- Java essaie de rattraper son retard avec l'ajout de `toList()` en 2021
-- L'utilisation de la Stream API est très verbeuse en Java
-- Dans les deux cas, tout est immutable, vos listes initiales resteront inchangées
+### Les différences {.alert}
+- Utilisation de l'API Stream en Java 8+
+  - Très verbeuse, il faut commencer par `stream()` et finir par `collect()`
+  - Java essaie de rattraper son retard avec l'ajout de `toList()` en 2021
+  - Pas d'équivalent à `forEachIndexed`
+- Dans les deux cas, vos listes initiales resteront inchangées (immutable)
 
 ## Example POJO avant `record` Java
 
@@ -490,10 +538,12 @@ println(woman)
 
 ## Kotlin vs Java
 
-### Les différences {.exampleblock}
-- Les POJO (Plain Old Java Object) sont des objets simples, sans règle métiers. Nous les utilisons pour décrire des tables (on les appelle également Java Bean) ou pour du transfert de donnée (également appelé DTO: Data Transfert Object).
+### Les différences {.alert}
+- Les POJO (Plain Old Java Object) sont des objets simples, sans règle métiers.
+  - Utilisé pour décrire des tables (Java Bean)
+  - Utilisé pour du transfert de donnée (DTO: Data Transfert Object).
 - Java essaie de rattraper son retard avec l'ajout des records en 2020
-- Java necessite toujours l'utilisation d'accolades lors de la déclaration de `record`
+- Java nécessite toujours l'utilisation d'accolades lors de la déclaration de `record`
 
 # Les exclusivités de Kotlin
 
