@@ -52,3 +52,23 @@ if [ "$1" = "pizzeria" ]; then
       ;;
   esac
 fi
+
+if [ "$2" = "pdf" ]; then
+  case "$1" in
+    pizzeria|spring|hibernate|spring-hibernate*)
+    pdf_basename="spring-hibernate"
+    ;;
+    osm|openstreetmap)
+    pdf_basename="openstreetmap"
+    ;;
+    kotlin)
+    pdf_basename="kotlin"
+    ;;
+  esac
+  if [ -n "$pdf_basename" ]; then
+    dirname="$(echo $(dirname $0)/beamer | sed 's,//,/,g')"
+    cd $dirname
+    pandoc -f markdown -st beamer $pdf_basename.md -B aboutme.tex -A takima.tex -o $pdf_basename.pdf --lua-filter code-filter.lua
+    cd - > /dev/null
+  fi
+fi

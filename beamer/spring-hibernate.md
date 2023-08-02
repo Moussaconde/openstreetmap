@@ -31,6 +31,9 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Qu'est-ce que JEE ?
 
+### Histoire de JEE
+
+- Création en 1999 sous Java 1.2
 - Version actuelle Jakarta EE 10
 - Ensemble de Java Specification Requests ou JSR
   - JTA (Java Transaction API)
@@ -45,11 +48,11 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Qu'est-ce que JEE ?
 
-### Plusieurs type de serveur
+### Plusieurs type de serveur {.example}
 - Serveur d'application (Glassfish, WildFly...)
 - Conteneur de servlets (Tomcat, Jetty, WebSphere...)
 
-### Implémentation des spécifications
+### Implémentation des spécifications {.alert}
 - Spring Framwork et ses modules
   - Spring JDBC (implémente JDBC)
   - Spring ORM (binding hibernate et JPA)
@@ -109,21 +112,17 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Avantages et Inconvéniants
 
-\begin{exampleblock}{Avantages}
-  \begin{itemize}
-    \item<1-> Mapping des classes automatique
-    \item<1-> Rapidité d'implémentation
-    \item<1-> Génère les requêtes SQL
-    \item<1-> Changement facile de SGBD
-  \end{itemize}
-\end{exampleblock}
+### Avantages {.example}
+- Mapping des classes automatique
+- Rapidité d'implémentation
+- Génère les requêtes SQL
+- Changement facile de SGBD
 
-\begin{alertblock}{Inconvéniants}
-  \begin{itemize}
-    \item<2-> Requêtes complexes pas toujours optimisées
-    \item<2-> \danger Les relations One/Many To Many en mode lazzy
-  \end{itemize}
-\end{alertblock}
+### Inconvéniants {.alert}
+\pause
+- Requêtes complexes pas toujours optimisées
+- \danger Les relations One/Many To Many en mode lazzy
+
 
 # Pourquoi Spring ?
 
@@ -192,7 +191,7 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Qu'est-ce que ~~Maven~~ Gradle ?
 
-### Gradle
+### Gradle {.example}
 - Gestionnaire de build et de dépendances évolué
 - Utilisation du multi-module
 - Lancement des tests
@@ -214,13 +213,13 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Reactive Programming
 
-### Modèle classique
+### Modèle classique {.alert}
 - 1 requête = 1 thread
 - 10 requêtes = 10 threads
 - 100 requêtes = 100 threads
 -  Mais combien d’opérations peuvent réellement être exécutées en même temps?
 
-### Modèle réactif
+### Modèle réactif {.example}
 - Des requêtes sur des \say{workers}
 - Optimiser l’activité du thread plutôt que le nombre de threads
 - Opérations non blocantes

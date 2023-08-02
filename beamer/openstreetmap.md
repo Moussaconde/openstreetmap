@@ -28,16 +28,13 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 
 ## Le projet OpenStreetMap
 
-\begin{block}{Le projet OpenStreetMap}
-  \begin{itemize}
-    \item Projet de cartographie mondial
-    \item Fondé en 2004 en Angleterre
-    \item Projet collaboratif
-    \item Fondation à but non lucratif
-    \item Chaque pays a sa communauté
-    \item Organisation de State Of The Map (conférences modiales)
-  \end{itemize}
-\end{block}
+### Le projet OpenStreetMap
+- Projet de cartographie mondial
+- Fondé en 2004 en Angleterre
+- Projet collaboratif
+- Fondation à but non lucratif
+- Chaque pays a sa communauté
+- Organisation de State Of The Map (conférences modiales)
 
 ## La donnée OSM
 
@@ -91,28 +88,22 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 
 ## Les providers OSM
 
-\begin{exampleblock}{Les providers OSM}
-  \begin{itemize}
-    \item \textbf{Jawg}Maps (France)
-    \item Mapbox (USA)
-    \item Carto (USA)
-    \item Geofabrik (Allemagne)
-    \item Stamen (USA)
-    \item Thunderforest (USA)
-    \item \textbf{map}tiler/OpenMapTiles (Suisse)
-  \end{itemize}
-\end{exampleblock}
+### Les providers OSM {.example}
+- **Jawg**Maps (France)
+- Mapbox (USA)
+- Carto (USA)
+- Geofabrik (Allemagne)
+- Stamen (USA)
+- Thunderforest (USA)
+- **map**tiler/OpenMapTiles (Suisse)
 
 ## Qui utilise des cartes OSM ?
 
-\begin{alertblock}{Qui utilise des cartes OSM ?}
-  \begin{itemize}
-    \item Facebook et Instagram
-    \item Snapshat (utilise Mapbox)
-    \item Wikipedia (via Wikimedia)
-    \item Microsoft (via Bing)
-  \end{itemize}
-\end{alertblock}
+### Qui utilise des cartes OSM ? {.alert}
+- Facebook et Instagram
+- Snapshat (utilise Mapbox)
+- Wikipedia (via Wikimedia)
+- Microsoft (via Bing)
 
 # Qu'est-ce qu'une carte ?
 
@@ -124,7 +115,7 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 - Lignes => Routes, Rivières, Frontières...
 - Polygones => Bâtiments, Fleuves/Lacs, Forêts, Frontières
 
-### Affichage
+### Affichage {.example}
 - Rendu différent pour chaque type d'éléments
 - Utilisation de \say{tuiles} raster ou vectorielle
 
@@ -171,6 +162,7 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 
 ## Création d'un serveur de tuiles
 
+### Consignes  {.alert}
 - Format de l'API: `/{z}/{x}/{y}.png`
 - Mode simplifié: SVG du monde => png
 - Base de code disponible => <https://github.com/Joxit/IG-Master2/tree/master/osm>
@@ -187,6 +179,7 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 
 ## Création d'un serveur de POIs
 
+### Consignes  {.alert}
 - Doit renvoyer un GeoJSON correctement formé: <https://geojson.org/>
 - Éléments simples (`FeatureCollection` de `Points`)
 - Exemple de donnée disponible => <https://github.com/Joxit/IG-Master2/tree/master/osm/osm-core/src/main/resources/>
@@ -201,6 +194,7 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 
 ## Ajout de tuiles vectorielles
 
+### Consignes  {.alert}
 - Création d'un compte sur le lab: <https://jawg.io/lab/>
 - Remplacement du style
 
@@ -212,16 +206,12 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 
 ## Conclusion
 
-\begin{block}{Implémentations}
-  \begin{itemize}
-    \item Fond de carte
-    \item Service de POIs
-    \item UI pour le fond de carte
-    \item UI pour les POIs
-    \item UI pour l'itinéraire
-    %\item UI pour le géocoding
-  \end{itemize}
-\end{block}
+### Implémentations
+- Fond de carte
+- Service de POIs
+- UI pour le fond de carte
+- UI pour les POIs
+- UI pour l'itinéraire
 
 ---
 

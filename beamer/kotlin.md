@@ -17,9 +17,6 @@ header-includes: |
   \AtBeginEnvironment{block}{\setbeamercolor{itemize item}{fg=jawgMaps}}
   \AtBeginEnvironment{block}{\setbeamercolor{itemize subitem}{fg=jawgMaps}}
   \usepackage{dirtytalk}
-  \usepackage{tcolorbox}
-  \tcbset{colback=blueGrey!100!jawgMaps,size=small}
-  \tcbsetforeverylayer{colframe=jawgMaps!100!black}
 build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex -o kotlin.pdf
 ---
 
