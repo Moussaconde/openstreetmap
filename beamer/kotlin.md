@@ -46,7 +46,7 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
   - Peut utiliser des libraries Java
   - Peut être exporté en librairie pour des projets Java
 - Est sûr (pas de `null`) et moins verbeux
-- Multiplatforme, compilable en:
+- Multiplatforme depuis 1.2 (novembre 2017)
   - Javascript
   - Native Android/iOS/mac/Linux/Windows
   - Web Assembly
@@ -112,6 +112,7 @@ fun main(args: Array<String>) {
 ```
 
 ```kotlin
+// Depuis Kotlin 1.3 (octobre 2018)
 fun main() {
   println("Hello, world!")
 }
@@ -459,7 +460,7 @@ list.forEach { println(it) }
 list.forEach(::println)
 // Présence de
 list.forEachIndexed {
-  elt, idx -> println("$elt $idx")
+  idx, elt -> println("$elt $idx")
 }
 ```
 
@@ -598,6 +599,55 @@ println("""En $s
   écrire sur
   plusieurs lignes
   """.trimIndent())
+```
+
+## Les extensions
+
+```kotlin
+fun String.customExtension(s: String): Int {
+  return "$this $s"
+}
+
+fun main() {
+  println(
+    "Test d'une extension".customExtension("Kotlin")
+  )
+  // -> "Test d'une extension Kotlin"
+}
+```
+
+## Les opérateurs
+
+```kotlin
+data class Wedding(val h1: Human, val h2: Human)
+data class Human(
+  val name: String, 
+  val surname: String = ""
+) {
+  operator fun plus(other: Human) = 
+    Wedding(this, other)
+}
+fun main() {
+  val wedding = Human("Jonh") + Human("Jane")
+  println(wedding)
+// Wedding(h1=Human(name=Jonh), h2=Human(name=Jane))
+}
+```
+
+## Destructurer des objets
+
+```kotlin
+for ((key, value) in mapOf("Odin" to 13)) {
+  println("$key $value kids")
+  // -> "Odin 13 kids"
+}
+
+for ((_, surname) in listOf(
+  Human("Galileo", "Galilei"))
+) {
+  println("M.$surname is an astronomer & physicist")
+  // M.Galilei is an astronomer & physicist
+}
 ```
 
 ## TODO / `NotImplementedError`
