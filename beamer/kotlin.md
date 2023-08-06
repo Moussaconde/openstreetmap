@@ -650,6 +650,22 @@ for ((_, surname) in listOf(
 }
 ```
 
+## Initialisation `lazy` et `lateinit`
+
+```kotlin
+class LazyClass {
+  lateinit var first: String
+  val second by lazy { Math.random() }
+  // val third: String // Do not compile
+
+  fun doSomething() {
+    first = "The string initalized"
+  }
+
+  fun doSomethingElse() = first.length * second
+}
+```
+
 ## TODO / `NotImplementedError`
 
 ```kotlin
