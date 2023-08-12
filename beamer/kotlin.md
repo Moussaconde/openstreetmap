@@ -532,6 +532,8 @@ println("$man / ${man.name}")
 // Human(name=John, surname=Doe) / John
 println(woman)
 // Human(name=Jane, surname=)
+println(woman.copy(surname = "Doe"))
+// Human(name=Jane, surname=Doe)
 ```
 
 ## Kotlin vs Java
@@ -663,6 +665,41 @@ class LazyClass {
   }
 
   fun doSomethingElse() = first.length * second
+}
+```
+
+## Valeur par défaut et paramètre nommé
+
+```kotlin
+data class HugeClass(
+  val param1: String = "1",
+  val param2: String = "2",
+  val param3: String = "3",
+)
+
+fun main() {
+  println(HugeClass("5"))
+  // HugeClass(param1=5, param2=2, param3=3)
+  println(HugeClass("6", param3 = "7"))
+  // HugeClass(param1=6, param2=2, param3=7)
+}
+```
+
+
+## Valeur par défaut et paramètre nommé
+
+```kotlin
+data class HugeClass(
+  val param1: String = "1",
+  val param2: String = "2",
+  val param3: String = "3",
+)
+
+fun main() {
+  println(HugeClass("5"))
+  // HugeClass(param1=5, param2=2, param3=3)
+  println(HugeClass("6", param3 = "7"))
+  // HugeClass(param1=6, param2=2, param3=7)
 }
 ```
 
