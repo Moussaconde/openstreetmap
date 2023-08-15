@@ -51,6 +51,11 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
   - Native Android/iOS/mac/Linux/Windows
   - Web Assembly
 
+## Kotlin Multiplatforme
+
+\center
+![](./kotlin-images/kotlin-MPP.png)
+
 ## Kotlin et Java
 
 ### Kotlin et Java {.alert}
