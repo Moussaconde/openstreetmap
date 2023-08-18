@@ -76,6 +76,7 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
 ## Les concepts Kotlin
 
 ### Principaux concepts
+
 - Programmation Orienté Objet (POO)
 - Programmation Fonctionnel (Lambda, fonction anonyme...)
 - Typage dynamique
@@ -93,7 +94,7 @@ build: pandoc -f markdown -st beamer kotlin.beamer -B aboutme.tex -A takima.tex 
 class HelloWorld {
   // Doit obligatoirement être dans une classe
   public static void main(String[] args) {
-    System.out.println("Hello, World!"); 
+    System.out.println("Hello, World!");
   }
 }
 ```
@@ -131,11 +132,18 @@ fun main() = println("Hello, world!")
 
 ## Kotlin VS Java
 
-### Les différences {.alert}
-- La fonction `main` est toujours le point d'entrée du programme
-- Elle prend en argument une liste de `String` qui peut être omis
+### Les ressemblances {.example}
+
+- La fonction `main`:
+  - Est toujours le point d'entrée du programme
+  - Prend en argument une liste de `String`
 - `println` affiche à l'écran ce qu'il prend en paramètre avec un saut de ligne
-- Pas besoin de mettre le package `System.out` pour effectuer un print sur l'écran
+
+### Les différences {.alert}
+
+- En Kotlin:
+  - Les arguments de `main` peut être omis
+  - Pas besoin de mettre le package `System.out` pour effectuer un print sur l'écran
 
 ---
 
@@ -186,10 +194,13 @@ c = 3
 ## Kotlin vs Java
 
 ### Les différences {.alert}
-- En Kotlin nous avons la notion d'immutabilité grâce aux `val`
-- Les primitives Java ont une majuscule en kotlin (`int` devient `Int`)
-- Le type de la variable se met après le nom de celle-ci
-- Le type de la variable peut être déduite dans la plupart des cas
+
+- En Kotlin
+  - Nous avons la notion d'immutabilité grâce aux `val`
+  - Le type de la variable se met après le nom de celle-ci
+  - Le type de la variable peut être déduite dans la plupart des cas
+- Les primitives Java ont une majuscule en Kotlin (`int` devient `Int`)
+- La classe Java `Object` devient `Any` en Kotlin
 
 ## Example functions Java
 
@@ -221,11 +232,17 @@ internal fun mul(a: Int, b: Int) = a * b
 
 ## Kotlin vs Java
 
+### Les ressemblances {.example}
+
+- Le mot clé pour les retours de fonction reste `return`
+
 ### Les différences {.alert}
-- Par défaut tout est `public` en Kotlin
-- Pour les functions simples, on peut mettre un `=` avec le retour directement
-- Le type se met toujours après les déclarations
-- `public` (par défault); `internal` (=> rien en Java); `protected`; `private`
+
+- En Kotlin
+  - Tout est `public` (fonctions et attributs)
+  - Pour les functions simples, on peut mettre un `=` avec le retour
+  - Le type de retour se met toujours après les déclarations
+  - Les access modifiers sont : `public` (par défault); `internal` (=> rien en Java); `protected`; `private`
 
 ## Example conditions if Java
 
@@ -268,9 +285,15 @@ fun maxOf(a: Int, b: Int) = if (a > b) a else b
 
 ## Kotlin vs Java
 
+### Les ressemblances {.example}
+
+- Le `return` se met dans les cas du `if`
+
 ### Les différences {.alert}
-- Le `return` peut être mis dans le `if` comme en Java ou avant le `if`
-- L'opérateur ternaire n'existe pas en Kotlin, c'est un `if` normal
+
+- En Kotlin:
+  - Le `return` peut se mettre avant le `if`
+  - L'opérateur ternaire n'existe pas, c'est un `if`
 
 ## Example expressions `switch` Java
 
@@ -328,7 +351,7 @@ fun switchCase(x: Int): Int {
 ```
 
 ```kotlin
-fun switchCase(x: Int): Int = 
+fun switchCase(x: Int): Int =
   when (x) {
     1, 2 -> -1
     else -> x * 2
@@ -356,12 +379,17 @@ fun switchCase(o: Any): String =
     else -> o.toString()
   }
 ```
+
 ## Kotlin vs Java
 
+### Les ressemblances {.example}
+
+- On peut combiner plusieurs options qui retournen la même instruction
+
 ### Les différences {.alert}
+
 - Le mot clé pour les expression est différente entre Java et Kotlin, nous avons le `switch` et `when`
 - Depuis Java 12 les expressions sont plus semblable à Kotlin
-- Dans les deux cas on peut combiner plusieurs options qui retournen la même instruction 
 - Possibilité de mettre des conditions plus complexes dans les options en Kotlin
 - En Java on utilise `yield` dans les cas complexes, cela determine la valeure de retour du `switch`
 - Le pattern matching kotlin ne permet pas de restrindre après une selection de type
@@ -425,11 +453,15 @@ do {
 
 ## Kotlin vs Java
 
-### Les différences {.alert}
-- Création de liste plus simple en Kotlin
-- Les `Range` dans Kotlin permet à la fois de créer des listes de nombres mais également de gérer les conditions d'arrêt des boucles `for`
-- Dans les deux cas il y a la boucle amélioré pour itérer sur les éléments directement à l'aide de `:` en Java et `in` en Kotlin
+### Les ressemblances {.example}
+
+- Présence de la boucle améliorée pour itérer sur les éléments à l'aide de `:` en Java et `in` en Kotlin
 - Code identique pour `while` et `do`/`while`
+
+### Les différences {.alert}
+
+- Création de liste plus simple en Kotlin
+- Les `Range` dans Kotlin permettent à la fois de créer des listes de nombres mais également de gérer les conditions d'arrêt des boucles `for`
 
 ## Example boucles `forEach` et `map` Java
 
@@ -471,12 +503,18 @@ list.forEachIndexed {
 
 ## Kotlin vs Java
 
+### Les ressemblances {.example}
+
+- Les listes initiales resteront inchangées après ces fonctions (immutable)
+  - En générale on chaîne les instructions
+  - Les objets contenus dans les listes peuvent être modifiés
+
 ### Les différences {.alert}
+
 - Utilisation de l'API Stream en Java 8+
   - Très verbeuse, il faut commencer par `stream()` et finir par `collect()`
   - Java essaie de rattraper son retard avec l'ajout de `toList()` en 2021
   - Pas d'équivalent à `forEachIndexed`
-- Dans les deux cas, vos listes initiales resteront inchangées (immutable)
 
 ## Example POJO avant `record` Java
 
@@ -543,10 +581,14 @@ println(woman.copy(surname = "Doe"))
 
 ## Kotlin vs Java
 
-### Les différences {.alert}
+### Définitions {.example}
+
 - Les POJO (Plain Old Java Object) sont des objets simples, sans règle métiers.
   - Utilisé pour décrire des tables (Java Bean)
   - Utilisé pour du transfert de donnée (DTO: Data Transfert Object).
+
+### Les différences {.alert}
+
 - Java essaie de rattraper son retard avec l'ajout des records en 2020
 - Java nécessite toujours l'utilisation d'accolades lors de la déclaration de `record`
 
@@ -628,10 +670,10 @@ fun main() {
 ```kotlin
 data class Wedding(val h1: Human, val h2: Human)
 data class Human(
-  val name: String, 
+  val name: String,
   val surname: String = ""
 ) {
-  operator fun plus(other: Human) = 
+  operator fun plus(other: Human) =
     Wedding(this, other)
 }
 fun main() {
@@ -689,7 +731,6 @@ fun main() {
   // HugeClass(param1=6, param2=2, param3=7)
 }
 ```
-
 
 ## Valeur par défaut et paramètre nommé
 
