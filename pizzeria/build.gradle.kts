@@ -2,9 +2,11 @@ plugins {
   java
   idea
   kotlin("jvm")
+  kotlin("plugin.jpa")
   id("com.github.ben-manes.versions")
   id("org.springframework.boot") apply false
   id("com.github.johnrengelman.shadow") apply false
+  id("org.jetbrains.kotlin.plugin.spring") apply true
 }
 
 fun isNonStable(version: String): Boolean {
@@ -35,6 +37,8 @@ allprojects {
 subprojects {
   apply(plugin = "java")
   apply(plugin = "kotlin")
+  apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+  apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
 
   tasks {
     compileKotlin {
@@ -54,5 +58,6 @@ subprojects {
   dependencies {
     implementation(platform("org.springframework.boot:spring-boot-dependencies:${property("version.spring.boot")}"))
     implementation(kotlin("stdlib"))
+    implementation(kotlin("reflect"))
   }
 }

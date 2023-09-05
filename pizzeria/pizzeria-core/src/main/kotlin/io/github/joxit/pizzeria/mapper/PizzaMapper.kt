@@ -42,7 +42,7 @@ class PizzaMapper {
       pizza.name,
       pizza.price,
       // Fonction lambda map avec référence sur méthode/champs
-      pizza.ingredients.map(Ingredient::getName)
+      pizza.ingredients.map(Ingredient::name)
     )
   }
 }
