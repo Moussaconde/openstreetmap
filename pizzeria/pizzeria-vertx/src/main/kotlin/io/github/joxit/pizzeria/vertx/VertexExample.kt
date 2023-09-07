@@ -37,7 +37,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 )
 @EnableTransactionManagement
 @Configuration
-open class VertexExample {
+class VertexExample {
   @Value("\${dataSource.username}")
   private lateinit var dataSourceUsername: String
 
@@ -63,7 +63,7 @@ open class VertexExample {
   }
 
   @Bean
-  open fun dataSource(): DataSource {
+  fun dataSource(): DataSource {
     val dataSource = BoneCPDataSource()
     dataSource.driverClass = "com.mysql.cj.jdbc.Driver"
     dataSource.jdbcUrl = "jdbc:$jdbcUrl"
@@ -74,13 +74,13 @@ open class VertexExample {
 
   @Bean
   @Autowired
-  open fun jdbcTemplate(dataSource: DataSource): JdbcTemplate {
+  fun jdbcTemplate(dataSource: DataSource): JdbcTemplate {
     return JdbcTemplate(dataSource)
   }
 
   @Bean
   @Autowired
-  open fun entityManagerFactory(dataSource: DataSource): LocalContainerEntityManagerFactoryBean {
+  fun entityManagerFactory(dataSource: DataSource): LocalContainerEntityManagerFactoryBean {
     val factory = LocalContainerEntityManagerFactoryBean()
     factory.dataSource = dataSource
     val vendorAdapter = HibernateJpaVendorAdapter()
@@ -95,12 +95,12 @@ open class VertexExample {
 
   @Bean
   @Autowired
-  open fun transactionManager(entityManagerFactory: LocalContainerEntityManagerFactoryBean): PlatformTransactionManager {
+  fun transactionManager(entityManagerFactory: LocalContainerEntityManagerFactoryBean): PlatformTransactionManager {
     return JpaTransactionManager(entityManagerFactory.nativeEntityManagerFactory)
   }
 
   @Bean
-  open fun vertx(): Vertx = Vertx.vertx()
+  fun vertx(): Vertx = Vertx.vertx()
 
   @PostConstruct
   private fun deployVerticle() {

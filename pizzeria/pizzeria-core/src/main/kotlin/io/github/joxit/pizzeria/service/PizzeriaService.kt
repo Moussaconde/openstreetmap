@@ -35,12 +35,12 @@ class PizzeriaService(
       pizzaDAO.getCustom().map(pizzaMapper::modelToDTO)
     }
 
-    "errorNotHandled" -> {
+    "errornothandled" -> {
       LOGGER.info("throw RuntimeException")
       throw RuntimeException("Error Not Handled")
     }
 
-    "errorHandled" -> {
+    "errorhandled" -> {
       LOGGER.info("throw HandledException")
       throw HandledException("Error Handled")
     }

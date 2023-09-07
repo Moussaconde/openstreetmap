@@ -1,13 +1,16 @@
 package io.github.joxit.pizzeria.vertx
 
+import io.github.joxit.pizzeria.dto.ErrorDTO
 import io.github.joxit.pizzeria.exception.HandledException
 import io.github.joxit.pizzeria.service.PizzeriaService
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.Promise
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpHeaders
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
 import io.vertx.core.json.Json
+import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.BodyHandler
@@ -32,7 +35,8 @@ class HttpServerVerticle : AbstractVerticle() {
   }
 
   @Autowired
-  private val pizzeriaService: PizzeriaService? = null
+  private lateinit var pizzeriaService: PizzeriaService
+
   override fun start(startFuture: Promise<Void>) {
     val router = Router.router(vertx)
     val bodyHandler = BodyHandler.create().setBodyLimit((1024 * 1024).toLong())
@@ -48,7 +52,7 @@ class HttpServerVerticle : AbstractVerticle() {
         val err = ctx.failure()
         LOGGER.error(err.message)
         if (err is HandledException) {
-          ctx.response().setStatusCode(400).end(err.message)
+          ctx.response().setStatusCode(400).send(ErrorDTO(400, err.message.orEmpty()).toBuffer())
         } else {
           ctx.next()
         }
@@ -70,12 +74,14 @@ class HttpServerVerticle : AbstractVerticle() {
       }
   }
 
+  fun ErrorDTO.toBuffer(): Buffer = JsonObject.mapFrom(this).toBuffer()
+
   private fun requestHandler(ctx: RoutingContext) {
     val request = ctx.request()
     val response = ctx.response()
     response.putHeader("Content-Type", "application/json")
       .setStatusCode(200)
-      .end(Json.encode(pizzeriaService!!.getAll(request.getParam("type"))))
+      .end(Json.encode(pizzeriaService.getAll(request.getParam("type"))))
   }
 
   private fun corsHandler() = CorsHandler.create()

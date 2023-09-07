@@ -20,6 +20,7 @@ dependencies {
 
   implementation("com.fasterxml.jackson.core:jackson-databind:${property("version.jackson")}")
   implementation("io.vertx:vertx-web:${property("version.vertx")}")
+  implementation("io.vertx:vertx-lang-kotlin:${property("version.vertx")}")
   implementation("javax.annotation:javax.annotation-api:${property("version.javax")}")
   implementation("org.javassist:javassist:${property("version.javassist")}")
 }
