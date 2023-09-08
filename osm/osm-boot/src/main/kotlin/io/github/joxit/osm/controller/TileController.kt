@@ -1,8 +1,7 @@
-package io.github.joxit.osm.controller;
+package io.github.joxit.osm.controller
 
-import mil.nga.sf.geojson.GeoJsonObject;
-
-import java.io.IOException;
+import java.io.IOException
+import mil.nga.sf.geojson.GeoJsonObject
 
 /**
  * C'est le controlleur de l'application, il faut le déclarer comme tel et activer les CrossOrigin
@@ -10,8 +9,7 @@ import java.io.IOException;
  * @author Jones Magloire @Joxit
  * @since 2019-11-03
  */
-public class TileController {
-
+class TileController {
   /**
    * Cette méthode est le point d'entrée de l'API, il prend les requêtes au format `/{z}/{x}/{y}.png`.
    * Attention, il doit renvoyer le header Content-Type image/png; voir les MediaType de Spring
@@ -21,8 +19,8 @@ public class TileController {
    * @param y coordonée
    * @return l'image au format PNG
    */
-  public byte[] getTile(int z, int x, int y) {
-    return null;
+  fun getTile(z: Int, x: Int, y: Int): ByteArray? {
+    TODO("À implémenter, lisez la JAVADOC et les consignes !")
   }
 
   /**
@@ -31,8 +29,9 @@ public class TileController {
    *
    * @return String representant le GeoJSON des prefectures
    */
-  public String getPrefectures() throws IOException {
-    return null;
+  @Throws(IOException::class)
+  fun getPrefectures(): String? {
+    TODO("À implémenter, lisez la JAVADOC et les consignes !")
   }
 
   /**
@@ -41,7 +40,7 @@ public class TileController {
    *
    * @return le geojson des POIs à renvoyer
    */
-  public GeoJsonObject getPOIs() {
-    return null;
+  fun getPOIs(): GeoJsonObject {
+    TODO("À implémenter, lisez la JAVADOC et les consignes !")
   }
 }
