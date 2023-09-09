@@ -11,6 +11,7 @@ pluginManagement {
   plugins {
     kotlin("jvm") version "${extra["version.kotlin"]}"
     kotlin("plugin.jpa")  version "${extra["version.kotlin"]}"
+    kotlin("plugin.serialization") version "${extra["version.kotlin"]}"
     id("org.jetbrains.kotlin.plugin.spring") version "${extra["version.kotlin"]}"
     id("org.springframework.boot") version "${extra["version.spring.boot"]}"
     id("com.github.ben-manes.versions") version "${extra["version.versions-plugin"]}"

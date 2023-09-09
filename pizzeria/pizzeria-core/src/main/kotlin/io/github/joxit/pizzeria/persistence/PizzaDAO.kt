@@ -60,7 +60,19 @@ class PizzaDAO(
     }
   }
 
-  operator fun get(name: String?): Pizza {
+  fun getPizza(name: String): Pizza {
     return em.find(Pizza::class.java, name)
+  }
+
+  fun createPizza(pizza: Pizza) {
+    em.persist(pizza)
+  }
+
+  fun updatePizza(pizza: Pizza) {
+    em.merge(pizza)
+  }
+
+  fun deletePizza(name: String) {
+    em.remove(getPizza(name))
   }
 }

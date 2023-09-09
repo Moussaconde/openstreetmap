@@ -12,6 +12,10 @@ import jakarta.persistence.Table
 @Table
 class Pizza(name: String, price: Float) : Stockable(name, price) {
 
+  constructor(name: String, price: Float, ingredients: Collection<Ingredient>): this(name, price) {
+    this.ingredients = ingredients
+  }
+
   @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
   @JoinTable(
     name = "MtM_Pizza_Ingredient",

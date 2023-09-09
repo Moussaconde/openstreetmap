@@ -57,7 +57,7 @@ create table if not exists MtM_Pizza_Ingredient (
   constraint pk_MtM_Pizza_Ingredient primary key (id)
 );
 
-alter table MtM_Pizza_Ingredient add constraint fk_MtM_Pizza_Ingredient_Pizza_1 foreign key (pizza) references Pizza (name) on delete restrict on update restrict;
+alter table MtM_Pizza_Ingredient add constraint fk_MtM_Pizza_Ingredient_Pizza_1 foreign key (pizza) references Pizza (name) on delete cascade on update restrict;
 create index ix_MtM_Pizza_Ingredient_Pizza_1 on MtM_Pizza_Ingredient (pizza);
-alter table MtM_Pizza_Ingredient add constraint fk_MtM_Pizza_Ingredient_Ingredient_1 foreign key (ingredient) references Ingredient (name) on delete restrict on update restrict;
+alter table MtM_Pizza_Ingredient add constraint fk_MtM_Pizza_Ingredient_Ingredient_1 foreign key (ingredient) references Ingredient (name) on delete cascade on update restrict;
 create index ix_MtM_Pizza_Ingredient_Ingredient_1 on MtM_Pizza_Ingredient (ingredient);

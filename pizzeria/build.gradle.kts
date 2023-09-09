@@ -3,6 +3,7 @@ plugins {
   idea
   kotlin("jvm")
   kotlin("plugin.jpa")
+  kotlin("plugin.serialization")
   id("com.github.ben-manes.versions")
   id("org.springframework.boot") apply false
   id("com.github.johnrengelman.shadow") apply false
@@ -39,6 +40,7 @@ subprojects {
   apply(plugin = "kotlin")
   apply(plugin = "org.jetbrains.kotlin.plugin.spring")
   apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
+  apply(plugin = "kotlinx-serialization")
 
   tasks {
     compileKotlin {
@@ -59,5 +61,7 @@ subprojects {
     implementation(platform("org.springframework.boot:spring-boot-dependencies:${property("version.spring.boot")}"))
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
+    implementation(kotlin("serialization"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${property("version.kotlinx")}")
   }
 }
