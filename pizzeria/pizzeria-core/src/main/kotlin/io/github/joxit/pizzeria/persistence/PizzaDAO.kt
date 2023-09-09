@@ -72,7 +72,7 @@ class PizzaDAO(
     em.merge(pizza)
   }
 
-  fun deletePizza(name: String) {
-    em.remove(getPizza(name))
+  fun deletePizza(pizza: Pizza) {
+    em.remove(pizza)
   }
 }

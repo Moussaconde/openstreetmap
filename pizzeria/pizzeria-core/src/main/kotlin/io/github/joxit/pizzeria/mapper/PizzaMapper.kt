@@ -13,8 +13,7 @@ import org.springframework.stereotype.Component
  * @since Java: 2017-11-01
  * @since Kotlin: 2022
  */
-@Component
-class PizzaMapper {
+object PizzaMapper {
   fun modelToDTO(pizza: Pizza): PizzaDTO {
     val ingredients = mutableListOf<String>()
     // Boucle traditionnelle

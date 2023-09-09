@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional
 class PizzeriaService(
   @Autowired private val pizzaDAO: PizzaDAO,
   @Autowired private val ingredientDAO: IngredientDAO,
-  @Autowired private val pizzaMapper: PizzaMapper,
   @Autowired private val pizzaSDJDAO: PizzaSDJDAO
 ) {
   companion object {
@@ -33,12 +32,12 @@ class PizzeriaService(
   fun getAll(type: String?): List<PizzaDTO> = when (type?.lowercase()) {
     "eager" -> {
       LOGGER.info("Run getAllWithIng")
-      pizzaDAO.getEager().map(pizzaMapper::modelToDTO)
+      pizzaDAO.getEager().map(PizzaMapper::modelToDTO)
     }
 
     "custom" -> {
       LOGGER.info("Run getAllCustom")
-      pizzaDAO.getCustom().map(pizzaMapper::modelToDTO)
+      pizzaDAO.getCustom().map(PizzaMapper::modelToDTO)
     }
 
     "errornothandled" -> {
@@ -53,7 +52,7 @@ class PizzeriaService(
 
     "spring-data-jpa" -> {
       LOGGER.info("Run getAllSDJ")
-      pizzaSDJDAO.findAll().map(pizzaMapper::modelToDTO)
+      pizzaSDJDAO.findAll().map(PizzaMapper::modelToDTO)
     }
 
     "empty" -> {
@@ -63,7 +62,7 @@ class PizzeriaService(
 
     else -> {
       LOGGER.info("Run getAllCustom")
-      pizzaDAO.getAll().map(pizzaMapper::modelToDTO)
+      pizzaDAO.getAll().map(PizzaMapper::modelToDTO)
     }
   }
 }
