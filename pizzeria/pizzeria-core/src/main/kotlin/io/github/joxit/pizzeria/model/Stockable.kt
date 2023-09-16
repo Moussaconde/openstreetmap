@@ -6,7 +6,7 @@ import java.io.Serializable
 
 @MappedSuperclass
 abstract class Stockable(
-  @Id val name: String, val price: Float = 0f
+  @Id val name: String, val price: Float = 0f, val protected: Boolean = false
 ) : Serializable {
   override fun hashCode(): Int {
     return name.hashCode()

@@ -1,17 +1,18 @@
 package io.github.joxit.pizzeria.service
 
 import io.github.joxit.pizzeria.dto.PizzaDTO
-import io.github.joxit.pizzeria.exception.HandledException
+import io.github.joxit.pizzeria.exception.IngredientNotFoundExceptions
+import io.github.joxit.pizzeria.exception.NotAllowedException
+import io.github.joxit.pizzeria.exception.PizzaExistsExceptions
+import io.github.joxit.pizzeria.exception.PizzaNotFoundExceptions
 import io.github.joxit.pizzeria.mapper.PizzaMapper
 import io.github.joxit.pizzeria.model.Pizza
 import io.github.joxit.pizzeria.persistence.IngredientDAO
 import io.github.joxit.pizzeria.persistence.PizzaDAO
-import io.github.joxit.pizzeria.persistence.PizzaSDJDAO
 import io.github.joxit.pizzeria.request.CreatePizzaRequest
 import io.github.joxit.pizzeria.request.PatchPizzaRequest
 import io.github.joxit.pizzeria.request.UpdatePizzaRequest
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import kotlin.jvm.optionals.getOrNull
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
@@ -26,43 +27,47 @@ class PizzaService(
 ) {
   @Transactional(readOnly = true)
   fun getPizza(name: String): PizzaDTO {
+    val pizza = pizzaDAO.getPizza(name) ?: throw PizzaNotFoundExceptions("The pizza $name does not exist")
     // Trouver une alternative à PizzaMapper.modelToDTO en Kotlin
-    return PizzaMapper.modelToDTO(pizzaDAO.getPizza(name))
+    return PizzaMapper.modelToDTO(pizza)
   }
 
   fun createPizza(pizzaRequest: CreatePizzaRequest): PizzaDTO {
-    // Faire une vérification et throw PizzaExistsExceptions quand une pizza existe déjà
-    val pizza = Pizza(
-      pizzaRequest.name,
-      pizzaRequest.price,
-      // 1- Faire une vérification et throw IngredientNotFoundExceptions quand un ingrédient n'existe pas
-      // 2- Factoriser cette boucle et vérification
-      pizzaRequest.ingredients.map { ingredientDAO.findById(it).get() }
+    if (pizzaDAO.getPizza(pizzaRequest.name) != null) throw PizzaExistsExceptions("The pizza ${pizzaRequest.name} already exist")
+
+    val pizza = Pizza(pizzaRequest.name, pizzaRequest.price,
+      // TODO Factoriser cette boucle
+      pizzaRequest.ingredients.map {
+        ingredientDAO.findById(it).getOrNull()
+          ?: throw IngredientNotFoundExceptions("The Ingredient $it does not exist")
+      }
     )
     pizzaDAO.createPizza(pizza)
     return PizzaMapper.modelToDTO(pizza)
   }
 
   fun updatePizza(name: String, pizzaRequest: UpdatePizzaRequest): PizzaDTO {
-    // Faire une vérification et throw PizzaNotFoundExceptions quand une pizza n'existe pas
-    val pizza = Pizza(name, pizzaRequest.price)
-    // Faire une vérification et throw IngredientNotFoundExceptions quand un ingrédient n'existe pas
-    // 2- Factoriser cette boucle et vérification
-    pizza.ingredients = pizzaRequest.ingredients.map { ingredientDAO.findById(it).get() }
-    pizzaDAO.updatePizza(pizza)
-    return PizzaMapper.modelToDTO(pizza)
+    val pizza = pizzaDAO.getPizza(name) ?: throw PizzaNotFoundExceptions("The pizza $name does not exist")
+    if (pizza.protected) throw NotAllowedException("The pizza `${pizza.name}` is protected")
+
+    val updatedPizza = Pizza(name, pizzaRequest.price)
+    // TODO Factoriser cette boucle
+    updatedPizza.ingredients = pizzaRequest.ingredients.map {
+      ingredientDAO.findById(it).getOrNull() ?: throw IngredientNotFoundExceptions("The Ingredient $it does not exist")
+    }
+    pizzaDAO.updatePizza(updatedPizza)
+    return PizzaMapper.modelToDTO(updatedPizza)
   }
 
   fun patchPizza(name: String, pizzaRequest: PatchPizzaRequest): PizzaDTO {
-    // Faire une vérification et throw PizzaNotFoundExceptions quand une pizza n'existe pas
-    val pizza = pizzaDAO.getPizza(name)
-    // Faire une vérification et throw IngredientNotFoundExceptions quand un ingrédient n'existe pas
-    // 2- Factoriser cette boucle et vérification
-    val ingredients = pizzaRequest.ingredients?.map { ingredientDAO.findById(it).get() }
+    val pizza = pizzaDAO.getPizza(name) ?: throw PizzaNotFoundExceptions("The pizza $name does not exist")
+
+    // TODO Factoriser cette boucle
+    val ingredients = pizzaRequest.ingredients?.map {
+      ingredientDAO.findById(it).getOrNull() ?: throw IngredientNotFoundExceptions("The Ingredient $it does not exist")
+    }
     val newPizza = Pizza(
-      name = name,
-      price = pizzaRequest.price ?: pizza.price,
-      ingredients = ingredients ?: pizza.ingredients
+      name = name, price = pizzaRequest.price ?: pizza.price, ingredients = ingredients ?: pizza.ingredients
     )
     pizzaDAO.updatePizza(newPizza)
     return PizzaMapper.modelToDTO(newPizza)
@@ -70,8 +75,8 @@ class PizzaService(
 
   fun deletePizza(name: String) {
     // En général lors d'un delete, quand un élément n'existe pas ce n'est pas grave
-    // 1- Ne pas renvoyer une 500 quand la pizza n'existe pas
-    // 2- Empêcher la suppression des pizzas par défauts
-    pizzaDAO.deletePizza(pizzaDAO.getPizza(name))
+    val pizza = pizzaDAO.getPizza(name) ?: return
+    if (pizza.protected) throw NotAllowedException("The pizza `${pizza.name}` is protected")
+    pizzaDAO.deletePizza(pizza)
   }
 }

@@ -5,6 +5,7 @@ use `pizzeria`;
 create table if not exists Pizza (
   name varchar(20) not null,
   price numeric not null,
+  protected boolean not null,
   constraint pk_Pizza primary key (name)
 );
 
@@ -21,6 +22,7 @@ create index ix_StockPizza_Pizza_1 on StockPizza (pizza);
 create table if not exists Ingredient (
   name varchar(20) not null,
   price numeric not null,
+  protected boolean not null,
   constraint pk_Ingredient primary key (name)
 );
 

@@ -60,7 +60,7 @@ class PizzaDAO(
     }
   }
 
-  fun getPizza(name: String): Pizza {
+  fun getPizza(name: String): Pizza? {
     return em.find(Pizza::class.java, name)
   }
 

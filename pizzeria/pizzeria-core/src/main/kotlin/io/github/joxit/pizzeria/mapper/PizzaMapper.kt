@@ -5,7 +5,6 @@ import io.github.joxit.pizzeria.model.Ingredient
 import io.github.joxit.pizzeria.model.Pizza
 import io.github.joxit.pizzeria.model.PizzaCustom
 import io.github.joxit.pizzeria.model.PizzaEager
-import org.springframework.stereotype.Component
 
 /**
  * Old Java version : https://github.com/Joxit/IG-Master2/tree/promo-2021/pizzeria/pizzeria-core/src/main/java/io/github/joxit/pizzeria
