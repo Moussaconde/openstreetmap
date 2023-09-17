@@ -31,7 +31,7 @@ function getAccessTokenQueryParam() {
   return DEFAULT_ACCESS_TOKEN;
 }
 
-const map = new mapboxgl.Map({
+const map = new maplibregl.Map({
   container: 'map', // container id
   style: {
     "version": 8,
@@ -59,7 +59,7 @@ const map = new mapboxgl.Map({
 var iconMarkerEl = document.createElement("div");
 iconMarkerEl.innerHTML = "<div class='marker-arrow'></div>";
 map.addControl(new PeliasGeocoder({
-  params: {'access-token': getAccessTokenQueryParam()},
+  params: {'access-token': getAccessTokenQueryParam() || '<JAWG_ACCESS_TOKEN>'},
   flyTo: 'hybrid',
   wof: true,
   url: 'https://places.jawg.io/v1',
@@ -71,8 +71,8 @@ map.addControl(new PeliasGeocoder({
   customAttribution: 'Powered by <a style="color: rgb(0, 148, 255); text-decoration: none;" href="http://jawg.io" title="Attributions" target="_blank" style=""><img style="max-height: 1em;" src="https://www.jawg.io/favicon.png"/><b>Jawg</b>Maps</a>'
 }));
 // Des plugins souvent utilisés
-map.addControl(new mapboxgl.NavigationControl());
-map.addControl(new mapboxgl.ScaleControl());
+map.addControl(new maplibregl.NavigationControl());
+map.addControl(new maplibregl.ScaleControl());
 
 // Fonction pour aider à créer un itinéraire.
 function latLngToGeoJSON(c) {
