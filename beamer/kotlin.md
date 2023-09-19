@@ -374,8 +374,17 @@ fun switchCase(x: Int) =
 ```kotlin
 fun switchCase(o: Any): String =
   when (o) {
-    is Int, is Float -> "Number ${o.toString()}"
+    is Int, is Float -> "Number $o"
     is String -> "String ${o.lowercase()}"
+    else -> o.toString()
+  }
+```
+
+```kotlin
+fun switchCase(o: Any): String =
+  when {
+    o is Int && o >= 0 -> "Number  ${o + 1} > 0"
+    o is String -> "String ${o.lowercase()}"
     else -> o.toString()
   }
 ```

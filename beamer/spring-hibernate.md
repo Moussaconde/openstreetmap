@@ -161,15 +161,34 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ----
 
-## Spring vs Spring Boot ?
+## Spring Boot Autoconfigure
 
-### Spring Boot
+### Autoconfiguration{.example}
+- Chargement de configuration par défaut
+- Chaque module Spring apporte sa configuration
+
+### Charger une configuration
+
+1. Configuration ligne de commande ex: `--server.port=9000`
+2. Configuration venant de `SPRING_APPLICATION_JSON` (inline JSON) ex: `{"server":{"port": 9000}}`
+3. Java System Properties ex `java -Dserver.port=9000 ...`
+4. Variable d'environnement OS ex: `SERVER_PORT=9000`
+5. Fichiers `application.properties` ou `application.yaml` dans le dossier `/config` ou à côté du jar ou dans le classpath
+6. Les valeurs par défaut de configuration (dans le code)
+
+## Spring Framework vs Spring Boot ?
+
+### Spring Boot{.example}
 - Basé sur Spring Framwork
 - Configuration automatique de l'application
-- Pas de déploiement de war
+- Tomcat intégré (serveur légers)
 - Beaucoup, beaucoup, beaucoup moins de code
 - Produit un fat jar (plus simple à lancer)
 - Bien pour faire des microservices scalable
+
+### Spring Framework{.alert}
+- Configuration via XML
+- Déploiement d'un war (serveur lourd)
 
 ## Spring Boot{.standout}
 
