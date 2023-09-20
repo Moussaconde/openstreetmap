@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin
-@RequestMapping("/pizzas/")
+@RequestMapping(path = [ "/pizzas", "/pizzas/" ])
 class PizzeriaController(
   @Autowired private val pizzeriaService: PizzeriaService
 ) {

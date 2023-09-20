@@ -17,13 +17,12 @@ import org.springframework.transaction.annotation.Transactional
  * @author Jones Magloire @Joxit
  * @since 2017-11-01
  */
-@Repository // For lazy loading
-@Transactional
+@Repository
+@Transactional // For lazy loading
 class PizzaDAO(
-  @PersistenceContext private val em: EntityManager,
+  @PersistenceContext private val em: EntityManager, // From JPA
   @Autowired private val jdbcTemplate: JdbcTemplate
 ) {
-  // From JPA
 
   fun getAll(): List<Pizza> {
     val cq: CriteriaQuery<Pizza> = em.criteriaBuilder.createQuery(Pizza::class.java)
