@@ -1,4 +1,4 @@
-import { Box, Grid, Text, Flex } from '@chakra-ui/react';
+import { Box, Grid, Text } from '@chakra-ui/react';
 export const Header = ({ children }) => (
   <Box bg="teal" padding="1em">
     <Grid templateColumns="repeat(2, 1fr)" gap="4">

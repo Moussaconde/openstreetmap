@@ -1,7 +1,7 @@
 export const getURL = () => {
   const queryParameters = new URLSearchParams(window.location.search);
   return (
-    (queryParameters.get('url') || '').trimEnd('/') || 'http://127.0.0.1:8080'
+    (queryParameters.get('url') || '').trimEnd('/') || 'https://pizzeria.joxit.dev'
   );
 };
 

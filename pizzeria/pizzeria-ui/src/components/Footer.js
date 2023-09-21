@@ -1,5 +1,5 @@
-import { Box, HStack, Text, Link } from '@chakra-ui/react';
-export const Footer = ({ children }) => (
+import { Box, HStack, Link } from '@chakra-ui/react';
+export const Footer = () => (
   <Box bg="grey" padding="1em">
     <HStack>
       <Link

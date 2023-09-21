@@ -33,7 +33,7 @@ const PizzaTable = ({ type, pizzas }) => (
       </Tr>
     </Thead>
     <Tbody>
-      {pizzas.map(({ name, prix, ingredients }) => (
+      {pizzas?.map(({ name, prix, ingredients }) => (
         <Tr key={`${type}-${name}`}>
           <Td>{name}</Td>
           <Td isNumeric>{prix} €</Td>

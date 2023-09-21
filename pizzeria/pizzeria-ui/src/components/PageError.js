@@ -28,7 +28,7 @@ export const PageError = ({ error }) => {
         {description}
       </AlertTitle>
       <AlertDescription>
-        <Code>{error}</Code>
+        <Code>{typeof error === 'string' && error}</Code>
       </AlertDescription>
     </Alert>
   );
