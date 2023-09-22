@@ -22,6 +22,8 @@ tasks.dependencyUpdates {
   }
 }
 
+val javaVersion = JavaVersion.VERSION_17
+
 allprojects {
   apply(plugin = "idea")
 
@@ -38,9 +40,13 @@ subprojects {
   apply(plugin = "java")
   apply(plugin = "kotlin")
 
+  tasks.compileKotlin {
+    kotlinOptions.jvmTarget = javaVersion.toString()
+  }
+
   java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
   }
 
   dependencies {

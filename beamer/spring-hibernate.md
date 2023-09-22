@@ -2,10 +2,11 @@
 title: Introduction à Spring et Hibernate
 subtitle: Institut Galilée - Master 2 PLS
 author: Jones Magloire
-date: 15 Septembre 2022
+date: 22 Septembre 2023
 theme: metropolis
 toc: true
 section-titles: false
+pagestyle: empty
 header-includes: |
   \newcommand{\hideFromPandoc}[1]{#1}
   \usepackage{fourier}
@@ -67,7 +68,7 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## JEE (Démo){.standout}
 
-\centering\Huge\href{http://servlet.joxit.fr/}{Démo}
+\centering\Huge\href{http://127.0.0.10:10000/}{Démo}
 
 [question-JEE-8]: <> (Finalement, qu'est-ce qu'une JSP ?)
 [à montrer-JEE-1]: <> (pizzeria-servlet WebApp: sources Java)
@@ -101,14 +102,19 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Hibernate{.standout}
 
-\centering\Huge\href{http://127.0.0.1:8080?type=lazy}{Démo}
+\centering\Huge\href{http://127.0.0.1:8080/pizzas/?type=lazy}{Démo}
 
 [à montrer-Hibernate-1]: <> (pizzeria-core model: Pizza avec ses annotations)
-[à montrer-Hibernate-2]: <> (Suppression de la transaction)
+[à montrer-Hibernate-2]: <> (Suppression de la transaction fonctionne toujours depuis 2022)
 [à montrer-Hibernate-3]: <> (Différence entre lazy et eagger)
 [à montrer-Hibernate-4]: <> (Les requêtes effectuées dans les logs entre lazy et eagger)
 [à montrer-Hibernate-5]: <> (pizzeria-core persistence: Différence entre Hibernate et JDBC (DAO))
-[à montrer-Hibernate-6]: <> (perf: Différence entre Hibernate et JDBC avec wrk)
+[à montrer-Hibernate-6]: <> (perf: Différence entre Hibernate et JDBC avec wrk
+Lazy Loading: 698.87 Requests/sec
+wrk -t 4 -c 50 http://127.0.0.10:10002/pizzas/?type=lazy
+JDBC: 3784.49 Requests/sec
+wrk -t 4 -c 50 http://127.0.0.10:10002/pizzas/?type=custom
+)
 
 ## Avantages et Inconvéniants
 
@@ -121,7 +127,7 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 ### Inconvéniants {.alert}
 \pause
 - Requêtes complexes pas toujours optimisées
-- \danger Les relations One/Many To Many en mode lazzy
+- \danger Les relations One/Many To Many en mode lazzy sue certaines versions
 
 
 # Pourquoi Spring ?
@@ -148,7 +154,7 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Spring Framework{.standout}
 
-\centering\Huge\href{http://ui.joxit.fr/?url=http://servlet.joxit.fr/api}{Démo}
+\centering\Huge\href{https://joxit.dev/IG-Master2/pizzeria/pizzeria-ui/?url=http://127.0.0.10:10000}{Démo}
 
 [à montrer-Spring-1]: <> (pizzeria-servlet webservice: Configuration d'une API)
 [à montrer-Spring-2]: <> (pizzeria-servlet webservice: gestion des erreurs)
@@ -192,7 +198,7 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 
 ## Spring Boot{.standout}
 
-\centering\Huge\href{http://ui.joxit.fr/?url=http://boot.joxit.fr/api}{Démo}
+\centering\Huge\href{https://joxit.dev/IG-Master2/pizzeria/pizzeria-ui/?url=http://127.0.0.10:10002}{Démo}
 
 [question-SpringBoot-3]: <> (Que choisir entre Spring sur Tomcat et Spring Boot ?)
 [question-SpringBoot-4]: <> (Quelles sont les differences entre Spring et Spring Boot ?)
@@ -236,27 +242,36 @@ build: pandoc -f markdown -st beamer spring-hibernate.beamer -B aboutme.tex -A t
 - 1 requête = 1 thread
 - 10 requêtes = 10 threads
 - 100 requêtes = 100 threads
--  Mais combien d’opérations peuvent réellement être exécutées en même temps?
+- Mais combien d’opérations peuvent réellement être exécutées en même temps?
 
 ### Modèle réactif {.example}
 - Des requêtes sur des \say{workers}
 - Optimiser l’activité du thread plutôt que le nombre de threads
 - Opérations non blocantes
 
+## Reactive Programming Démo{.standout}
 
-## Reactive Programming{.standout}
+\centering\Large
 
-\centering\Huge Démo
+Spring Framework + Servlet
+
+vs
+
+Spring Boot Web MVC
+
+vs
+
+Spring Boot Weblfux (Réactive)
 
 [à montrer-Reactive-1]: <> (pizzeria-webflux: Application pour les anotation et webservice)
 [à montrer-Reactive-2]: <> (pizzeria-webflux: Sur des requêtes utilisant la BDD cela ne va rien changer (dangeureux même))
 [à montrer-Reactive-3]: <> (perf: entre spring boot et webflux sur empty
-Servlet
-wrk -t 4 -c 50 http://127.0.0.10:10000/api?type=empty
-Spring Boot
-wrk -t 4 -c 50 http://127.0.0.10:10002/api?type=empty
-Spring Webflux
-wrk -t 4 -c 50 http://127.0.0.10:10003/api?type=empty
+Servlet: 11882.75 Requests/sec
+wrk -t 4 -c 50 http://127.0.0.10:10000/pizzas/?type=empty
+Spring Boot: 12885.37 Requests/sec
+wrk -t 4 -c 50 http://127.0.0.10:10002/pizzas/?type=empty
+Spring Webflux: 13591.05 Requests/sec
+wrk -t 4 -c 50 http://127.0.0.10:10003/pizzas/?type=empty
 )
 
 # Et pour après ?
@@ -271,15 +286,21 @@ wrk -t 4 -c 50 http://127.0.0.10:10003/api?type=empty
 - Quarkus + GraalVM
 - Ktor (framwork asynchrone designé pour Kotlin)
 
-## Vert.x{.standout}
+## Vert.x Démo{.standout}
 
-\centering\Huge Démo
+\centering\Large
+
+Spring Boot Weblux
+
+vs
+
+Vert.x
 
 [à montrer-Vert.x-1]: <> (perf: entre vertx et webflux sur empty et temps de démarrage
-Spring Webflux
-wrk -t 4 -c 50 http://127.0.0.10:10003/api?type=empty
-Spring Vert.x
-wrk -t 4 -c 50 http://127.0.0.10:10001/api?type=empty
+Spring Webflux: 13591.05 Requests/sec
+wrk -t 4 -c 50 http://127.0.0.10:10003/pizzas/?type=empty
+Spring Vert.x: 15602.93 Requests/sec
+wrk -t 4 -c 50 http://127.0.0.10:10001/pizzas/?type=empty
 )
 [à montrer-Vert.x-2]: <> (Difference entre Netty et Vert.x)
 

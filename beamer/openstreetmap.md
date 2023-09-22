@@ -2,10 +2,11 @@
 title: La cartographie avec OpenStreetMap
 subtitle: Institut Galilée - Master 2 PLS
 author: Jones Magloire
-date: 15 Septembre 2022
+date: 22 Septembre 2023
 theme: metropolis
 toc: true
 section-titles: false
+pagestyle: empty
 header-includes: |
   \newcommand{\hideFromPandoc}[1]{#1}
   \usepackage{fourier}
@@ -153,7 +154,7 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 
 ![](openstreetmap-images/ods-sig.png){ height=300px }
 
-# Création d'un serveur de tuiles
+# Travaux Pratiques: Spring Boot et Kotlin
 
 ## Création d'un serveur de tuiles{.standout}
 
@@ -171,12 +172,6 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 - Zoom 2: $2^4 = 16$ tuiles
 - Zoom n: $2^{2n}$ tuiles
 
-## Création d'un serveur de tuiles{.standout}
-
-\centering\Huge\href{https://joxit.dev/IG-Master2/osm\#le-serveur-de-tuiles}{Place au TP}
-
-# Création d'un serveur de POIs
-
 ## Création d'un serveur de POIs
 
 ### Consignes  {.alert}
@@ -186,35 +181,6 @@ build: pandoc -f markdown -st beamer openstreetmap.beamer -B aboutme.tex -A taki
 - Renvoyer les données via votre API
 - Ajout des éléments sur la carte
 
-## Création d'un serveur de POIs{.standout}
-
-\centering\Huge\href{https://joxit.dev/IG-Master2/osm\#ajouter-des-points}{Place au TP}
-
-# Ajout de tuiles vectorielles
-
-## Ajout de tuiles vectorielles
-
-### Consignes  {.alert}
-- Création d'un compte sur le lab: <https://jawg.io/lab/>
-- Remplacement du style
-
-## Ajout de tuiles vectorielles{.standout}
-
-\centering\Huge\href{https://joxit.dev/IG-Master2/osm\#ajout-dune-source-de-tuiles-vectorielles}{Place au TP}
-
-# Conclusion
-
-## Conclusion
-
-### Implémentations
-- Fond de carte
-- Service de POIs
-- UI pour le fond de carte
-- UI pour les POIs
-- UI pour l'itinéraire
-
----
-
 ## Conclusion {.standout}
 
-\centering\Huge Question ?
+\centering\Huge\href{https://joxit.dev/IG-Master2/osm}{Place au TP}

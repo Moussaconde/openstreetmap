@@ -6,6 +6,7 @@ date: 22 Septembre 2023
 theme: metropolis
 toc: true
 section-titles: false
+pagestyle: empty
 filter: code-filter.lua
 header-includes: |
   \newcommand{\hideFromPandoc}[1]{#1}

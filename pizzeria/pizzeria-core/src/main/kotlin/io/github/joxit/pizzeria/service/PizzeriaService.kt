@@ -55,7 +55,7 @@ class PizzeriaService(
     }
 
     else -> {
-      LOGGER.info("Run getAllCustom")
+      LOGGER.info("Run getAll")
       pizzaDAO.getAll().map(PizzaMapper::modelToDTO)
     }
   }
