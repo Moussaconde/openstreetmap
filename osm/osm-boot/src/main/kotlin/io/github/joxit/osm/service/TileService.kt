@@ -1,8 +1,11 @@
 package io.github.joxit.osm.service
+import io.github.joxit.osm.utils.Svg.getTile as getTileSVG
 
 import io.github.joxit.osm.model.Tile
 import java.io.IOException
-import mil.nga.sf.geojson.GeoJsonObject
+import org.springframework.stereotype.Service
+import org.springframework.util.StreamUtils
+import kotlin.math.pow
 
 /**
  * Service pour retourner les tuiles.
@@ -10,6 +13,7 @@ import mil.nga.sf.geojson.GeoJsonObject
  * @author Jones Magloire @Joxit
  * @since 2019-11-03
  */
+@Service
 class TileService {
   /**
    * Ici il faut prendre les coordonnées de la tuile et renvoyer la donnée PNG associée.
@@ -19,7 +23,14 @@ class TileService {
    * @return le byte array au format png
    */
   fun getTile(tile: Tile?): ByteArray? {
-    TODO("À implémenter, lisez la JAVADOC et les consignes !")
+
+    if (tile != null) {
+      if (tile.z < 0 || tile.z > 24 || tile.x < 0 || tile.y < 0 || tile.x >= 2.0.pow(tile.z.toDouble()).toInt() || tile.y >= 2.0.pow(tile.z.toDouble()).toInt()) {
+        throw IllegalArgumentException("Valeurs de tuile invalides.")
+      }
+    }
+
+    return tile?.let { getTileSVG(it) }
   }
 
   /**
@@ -30,7 +41,17 @@ class TileService {
    */
   @Throws(IOException::class)
   fun getPrefectures(): String {
-    TODO("À implémenter, lisez la JAVADOC et les consignes !")
+    val inputStream = javaClass.classLoader.getResourceAsStream("prefectures.geojson")
+
+    if (inputStream != null) {
+      try {
+        return StreamUtils.copyToString(inputStream, Charsets.UTF_8)
+      } finally {
+        inputStream.close()
+      }
+    } else {
+      throw IOException("Fichier GeoJSON introuvable dans les ressources du classpath.")
+    }
   }
 
   /**
@@ -39,7 +60,7 @@ class TileService {
    *
    * @return les éléments contenus dans la base de données
    */
-  fun getPOIs(): GeoJsonObject {
-    TODO("À implémenter, lisez la JAVADOC et les consignes !")
-  }
+  /**fun getPOIs(): GeoJsonObject {
+
+  }**/
 }
